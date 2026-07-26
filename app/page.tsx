@@ -16,8 +16,8 @@ import {
   Terminal,
   Database,
   Zap,
+  Download,
 } from 'lucide-react';
-import { toast } from 'sonner';
 
 const projects = [
   {
@@ -31,6 +31,7 @@ const projects = [
     githubUrl: 'https://github.com/Geoduor/khu-live-app',
     color: 'from-cyan-500/20 to-blue-600/20',
     icon: <Zap size={40} />,
+    metrics: 'Live production • Real-time data • Fan-facing platform',
     caseStudy: {
       problem:
         'Kenya Hockey Union had no dedicated fan-facing platform for live scores, fixtures and standings.',
@@ -51,6 +52,7 @@ const projects = [
     githubUrl: 'https://github.com/Geoduor/OFF-PITCH',
     color: 'from-red-500/25 to-rose-700/25',
     icon: <Terminal size={40} />,
+    metrics: 'Production website • Brand platform • Mobile-first',
     caseStudy: {
       problem:
         'African athletes and sports stories lacked a professional platform focused on life beyond the pitch.',
@@ -71,6 +73,7 @@ const projects = [
     githubUrl: 'https://github.com/Geoduor/agripride-insights',
     color: 'from-violet-500/20 to-purple-600/20',
     icon: <Database size={40} />,
+    metrics: 'AI-powered • Agriculture focus • Analytics platform',
     caseStudy: {
       problem:
         'Smallholder farmers in Africa lack accessible tools for data-driven crop decisions.',
@@ -113,6 +116,27 @@ const skills = [
   { name: 'Go', level: 72 },
   { name: 'Docker & CI/CD', level: 80 },
   { name: 'System Design', level: 78 },
+];
+
+const testimonials = [
+  {
+    quote:
+      'Geofry delivered a clean, professional platform that elevated our brand presence significantly.',
+    name: 'Off Pitch Africa Team',
+    role: 'Sports Media',
+  },
+  {
+    quote:
+      'Reliable, fast, and thoughtful in every technical decision. Highly recommend working with him.',
+    name: 'Client',
+    role: 'Business Systems',
+  },
+  {
+    quote:
+      'He bridges engineering thinking with modern software exceptionally well.',
+    name: 'Collaborator',
+    role: 'Automation & AI',
+  },
 ];
 
 const fadeUp = {
@@ -168,7 +192,6 @@ export default function GEOTechPortfolio() {
             <span className="text-xl font-semibold tracking-tight">GEOTech</span>
           </div>
 
-          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8 text-sm text-zinc-400">
             <a href="#work" className="hover:text-white transition">Work</a>
             <a href="#services" className="hover:text-white transition">Services</a>
@@ -180,40 +203,33 @@ export default function GEOTechPortfolio() {
 
           <div className="flex items-center gap-3">
             <a
+              href="/Geofry_Oduor_CV.pdf"
+              target="_blank"
+              className="hidden sm:flex items-center gap-2 text-sm px-4 py-2 rounded-full border border-white/20 hover:border-cyan-400 transition"
+            >
+              <Download size={16} /> CV
+            </a>
+            <a
               href="#contact"
               className="hidden sm:inline-block text-sm px-5 py-2 rounded-full bg-white text-black font-medium hover:bg-cyan-400 transition"
             >
               Let's talk
             </a>
 
-            {/* Hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="md:hidden p-2"
               aria-label="Toggle menu"
             >
               <div className="w-6 h-5 flex flex-col justify-between">
-                <span
-                  className={`block h-0.5 bg-white transition ${
-                    mobileOpen ? 'rotate-45 translate-y-2' : ''
-                  }`}
-                />
-                <span
-                  className={`block h-0.5 bg-white transition ${
-                    mobileOpen ? 'opacity-0' : ''
-                  }`}
-                />
-                <span
-                  className={`block h-0.5 bg-white transition ${
-                    mobileOpen ? '-rotate-45 -translate-y-2' : ''
-                  }`}
-                />
+                <span className={`block h-0.5 bg-white transition ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block h-0.5 bg-white transition ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-0.5 bg-white transition ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
               </div>
             </button>
           </div>
         </div>
 
-        {/* Mobile menu */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -223,18 +239,23 @@ export default function GEOTechPortfolio() {
               className="md:hidden border-t border-white/5 bg-[#0a0a0a]"
             >
               <div className="flex flex-col px-6 py-4 gap-4 text-sm">
-                {['Work', 'Services', 'Skills', 'Process', 'About', 'Contact'].map(
-                  (item) => (
-                    <a
-                      key={item}
-                      href={`#${item.toLowerCase()}`}
-                      onClick={() => setMobileOpen(false)}
-                      className="text-zinc-300 hover:text-white"
-                    >
-                      {item}
-                    </a>
-                  )
-                )}
+                {['Work', 'Services', 'Skills', 'Process', 'About', 'Contact'].map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-zinc-300 hover:text-white"
+                  >
+                    {item}
+                  </a>
+                ))}
+                <a
+                  href="/Geofry_Oduor_CV.pdf"
+                  target="_blank"
+                  className="text-cyan-400 font-medium"
+                >
+                  Download CV
+                </a>
               </div>
             </motion.div>
           )}
@@ -260,10 +281,10 @@ export default function GEOTechPortfolio() {
             transition={{ type: 'spring', stiffness: 90, damping: 18, delay: 0.1 }}
             className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            Software solutions
+            I build intelligent software
             <br />
             <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-              that actually ship.
+              for African businesses.
             </span>
           </motion.h1>
 
@@ -273,8 +294,7 @@ export default function GEOTechPortfolio() {
             transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
             className="text-xl text-zinc-400 max-w-2xl mx-auto mb-10"
           >
-            I build AI automation, SaaS platforms and full-stack systems for businesses
-            across Africa. Clean code. Fast delivery. Real impact.
+            AI automation, SaaS platforms and full-stack systems for sports, agriculture and enterprises. Clean architecture. Fast delivery. Real impact.
           </motion.p>
 
           <motion.div
@@ -290,10 +310,11 @@ export default function GEOTechPortfolio() {
               View selected work <ArrowRight size={18} />
             </a>
             <a
-              href="#contact"
-              className="px-8 py-3.5 border border-white/20 rounded-full hover:bg-white/5 transition"
+              href="/Geofry_Oduor_CV.pdf"
+              target="_blank"
+              className="px-8 py-3.5 border border-white/20 rounded-full hover:bg-white/5 transition flex items-center gap-2"
             >
-              Book a free call
+              <Download size={18} /> Download CV
             </a>
           </motion.div>
         </div>
@@ -387,7 +408,8 @@ export default function GEOTechPortfolio() {
                   <h3 className="text-xl font-semibold mb-2 group-hover:text-cyan-400 transition">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-zinc-400 line-clamp-2">{p.description}</p>
+                  <p className="text-sm text-zinc-400 line-clamp-2 mb-3">{p.description}</p>
+                  <p className="text-xs text-cyan-400/80">{p.metrics}</p>
                 </div>
               </motion.div>
             ))}
@@ -490,7 +512,7 @@ export default function GEOTechPortfolio() {
         </div>
       </section>
 
-      {/* Process / How I Work */}
+      {/* Process */}
       <section id="process" className="py-24 px-6 bg-zinc-950/30">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -507,26 +529,10 @@ export default function GEOTechPortfolio() {
 
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              {
-                step: '01',
-                title: 'Discover',
-                desc: 'We clarify goals, users and constraints in a short kickoff call.',
-              },
-              {
-                step: '02',
-                title: 'Design',
-                desc: 'I map the architecture and create a clear technical plan.',
-              },
-              {
-                step: '03',
-                title: 'Build',
-                desc: 'Clean, tested code with regular updates and demos.',
-              },
-              {
-                step: '04',
-                title: 'Ship',
-                desc: 'Deploy, hand over documentation and support the launch.',
-              },
+              { step: '01', title: 'Discover', desc: 'We clarify goals, users and constraints in a short kickoff call.' },
+              { step: '02', title: 'Design', desc: 'I map the architecture and create a clear technical plan.' },
+              { step: '03', title: 'Build', desc: 'Clean, tested code with regular updates and demos.' },
+              { step: '04', title: 'Ship', desc: 'Deploy, hand over documentation and support the launch.' },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -536,11 +542,45 @@ export default function GEOTechPortfolio() {
                 transition={{ delay: i * 0.1 }}
                 className="p-6 rounded-2xl border border-white/5 bg-zinc-900/40"
               >
-                <div className="text-cyan-400 font-mono text-sm mb-3">
-                  {item.step}
-                </div>
+                <div className="text-cyan-400 font-mono text-sm mb-3">{item.step}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-sm text-zinc-400">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-sm text-cyan-400 mb-2">SOCIAL PROOF</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              What people say
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-6 rounded-2xl border border-white/5 bg-zinc-900/40"
+              >
+                <p className="text-zinc-300 mb-6 leading-relaxed">"{t.quote}"</p>
+                <div>
+                  <p className="font-medium">{t.name}</p>
+                  <p className="text-sm text-zinc-500">{t.role}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -564,18 +604,18 @@ export default function GEOTechPortfolio() {
 
             <div className="space-y-6 text-lg text-zinc-400 leading-relaxed text-left md:text-center">
               <p>
-                Mechanical Engineering student turned AI & full-stack engineer based in
-                Nairobi. I combine systems thinking from engineering with modern software
-                development to build products that solve real problems.
+                Mechanical Engineering student turned AI & full-stack engineer based in Nairobi.
+                I combine systems thinking from engineering with modern software development to
+                build products that solve real problems.
               </p>
               <p>
-                My focus is on intelligent systems — AI automation, SaaS platforms, and
-                business tools for sports, agriculture, and African enterprises. I care
-                about clean architecture, fast delivery, and measurable impact.
+                My focus is on intelligent systems — AI automation, SaaS platforms, and business
+                tools for sports, agriculture, and African enterprises. I care about clean
+                architecture, fast delivery, and measurable impact.
               </p>
               <p>
-                When I’m not shipping code, I’m usually deep in industrial automation labs
-                or exploring new ways AI can create leverage for African teams.
+                When I’m not shipping code, I’m usually deep in industrial automation labs or
+                exploring new ways AI can create leverage for African teams.
               </p>
             </div>
 
@@ -615,10 +655,6 @@ export default function GEOTechPortfolio() {
             Tell me about your project. I reply within 24 hours.
           </p>
 
-          {/* 
-            Replace YOUR_FORM_ID with your Formspree form ID 
-            Example: https://formspree.io/f/xpwgkqyz
-          */}
           <form
             action="https://formspree.io/f/xnjelqyw"
             method="POST"
@@ -674,7 +710,7 @@ export default function GEOTechPortfolio() {
         © {new Date().getFullYear()} GEOTech · Geofry Oduor
       </footer>
 
-      {/* Project Modal – Case Study Style */}
+      {/* Project Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -716,43 +752,31 @@ export default function GEOTechPortfolio() {
                 </button>
               </div>
 
-              <p className="text-zinc-400 mb-6">{selectedProject.description}</p>
+              <p className="text-zinc-400 mb-4">{selectedProject.description}</p>
+              {selectedProject.metrics && (
+                <p className="text-sm text-cyan-400 mb-6">{selectedProject.metrics}</p>
+              )}
 
               {selectedProject.caseStudy && (
                 <div className="space-y-5 mb-8">
                   <div>
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-1">
-                      Problem
-                    </h4>
-                    <p className="text-sm text-zinc-400">
-                      {selectedProject.caseStudy.problem}
-                    </p>
+                    <h4 className="text-sm font-semibold text-cyan-400 mb-1">Problem</h4>
+                    <p className="text-sm text-zinc-400">{selectedProject.caseStudy.problem}</p>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-1">
-                      Solution
-                    </h4>
-                    <p className="text-sm text-zinc-400">
-                      {selectedProject.caseStudy.solution}
-                    </p>
+                    <h4 className="text-sm font-semibold text-cyan-400 mb-1">Solution</h4>
+                    <p className="text-sm text-zinc-400">{selectedProject.caseStudy.solution}</p>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-1">
-                      Impact
-                    </h4>
-                    <p className="text-sm text-zinc-400">
-                      {selectedProject.caseStudy.impact}
-                    </p>
+                    <h4 className="text-sm font-semibold text-cyan-400 mb-1">Impact</h4>
+                    <p className="text-sm text-zinc-400">{selectedProject.caseStudy.impact}</p>
                   </div>
                 </div>
               )}
 
               <div className="flex flex-wrap gap-2 mb-6">
                 {selectedProject.tech.map((t: string) => (
-                  <span
-                    key={t}
-                    className="text-xs px-3 py-1 bg-white/5 rounded-full"
-                  >
+                  <span key={t} className="text-xs px-3 py-1 bg-white/5 rounded-full">
                     {t}
                   </span>
                 ))}
