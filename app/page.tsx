@@ -143,11 +143,7 @@ const staggerContainer = {
 
 export default function GEOTechPortfolio() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
-
-  const handleContact = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success("Message received! I'll reply within 24 hours.");
-  };
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
@@ -171,30 +167,78 @@ export default function GEOTechPortfolio() {
             </div>
             <span className="text-xl font-semibold tracking-tight">GEOTech</span>
           </div>
+
+          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8 text-sm text-zinc-400">
-            <a href="#work" className="hover:text-white transition">
-              Work
-            </a>
-            <a href="#services" className="hover:text-white transition">
-              Services
-            </a>
-            <a href="#skills" className="hover:text-white transition">
-              Skills
-            </a>
-            <a href="#about" className="hover:text-white transition">
-              About
-            </a>
-            <a href="#contact" className="hover:text-white transition">
-              Contact
-            </a>
+            <a href="#work" className="hover:text-white transition">Work</a>
+            <a href="#services" className="hover:text-white transition">Services</a>
+            <a href="#skills" className="hover:text-white transition">Skills</a>
+            <a href="#process" className="hover:text-white transition">Process</a>
+            <a href="#about" className="hover:text-white transition">About</a>
+            <a href="#contact" className="hover:text-white transition">Contact</a>
           </div>
-          <a
-            href="#contact"
-            className="text-sm px-5 py-2 rounded-full bg-white text-black font-medium hover:bg-cyan-400 transition"
-          >
-            Let's talk
-          </a>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              className="hidden sm:inline-block text-sm px-5 py-2 rounded-full bg-white text-black font-medium hover:bg-cyan-400 transition"
+            >
+              Let's talk
+            </a>
+
+            {/* Hamburger */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2"
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-5 flex flex-col justify-between">
+                <span
+                  className={`block h-0.5 bg-white transition ${
+                    mobileOpen ? 'rotate-45 translate-y-2' : ''
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 bg-white transition ${
+                    mobileOpen ? 'opacity-0' : ''
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 bg-white transition ${
+                    mobileOpen ? '-rotate-45 -translate-y-2' : ''
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden border-t border-white/5 bg-[#0a0a0a]"
+            >
+              <div className="flex flex-col px-6 py-4 gap-4 text-sm">
+                {['Work', 'Services', 'Skills', 'Process', 'About', 'Contact'].map(
+                  (item) => (
+                    <a
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-zinc-300 hover:text-white"
+                    >
+                      {item}
+                    </a>
+                  )
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* Hero */}
@@ -229,8 +273,8 @@ export default function GEOTechPortfolio() {
             transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
             className="text-xl text-zinc-400 max-w-2xl mx-auto mb-10"
           >
-            I build AI automation, SaaS platforms and full-stack systems for businesses across
-            Africa. Clean code. Fast delivery. Real impact.
+            I build AI automation, SaaS platforms and full-stack systems for businesses
+            across Africa. Clean code. Fast delivery. Real impact.
           </motion.p>
 
           <motion.div
@@ -446,6 +490,63 @@ export default function GEOTechPortfolio() {
         </div>
       </section>
 
+      {/* Process / How I Work */}
+      <section id="process" className="py-24 px-6 bg-zinc-950/30">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-sm text-cyan-400 mb-2">PROCESS</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              How I work
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                step: '01',
+                title: 'Discover',
+                desc: 'We clarify goals, users and constraints in a short kickoff call.',
+              },
+              {
+                step: '02',
+                title: 'Design',
+                desc: 'I map the architecture and create a clear technical plan.',
+              },
+              {
+                step: '03',
+                title: 'Build',
+                desc: 'Clean, tested code with regular updates and demos.',
+              },
+              {
+                step: '04',
+                title: 'Ship',
+                desc: 'Deploy, hand over documentation and support the launch.',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-6 rounded-2xl border border-white/5 bg-zinc-900/40"
+              >
+                <div className="text-cyan-400 font-mono text-sm mb-3">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-sm text-zinc-400">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About */}
       <section id="about" className="py-24 px-6 bg-zinc-950/40">
         <div className="max-w-4xl mx-auto">
@@ -463,18 +564,18 @@ export default function GEOTechPortfolio() {
 
             <div className="space-y-6 text-lg text-zinc-400 leading-relaxed text-left md:text-center">
               <p>
-                Mechanical Engineering student turned AI & full-stack engineer based in Nairobi.
-                I combine systems thinking from engineering with modern software development to
-                build products that solve real problems.
+                Mechanical Engineering student turned AI & full-stack engineer based in
+                Nairobi. I combine systems thinking from engineering with modern software
+                development to build products that solve real problems.
               </p>
               <p>
-                My focus is on intelligent systems — AI automation, SaaS platforms, and business
-                tools for sports, agriculture, and African enterprises. I care about clean
-                architecture, fast delivery, and measurable impact.
+                My focus is on intelligent systems — AI automation, SaaS platforms, and
+                business tools for sports, agriculture, and African enterprises. I care
+                about clean architecture, fast delivery, and measurable impact.
               </p>
               <p>
-                When I’m not shipping code, I’m usually deep in industrial automation labs or
-                exploring new ways AI can create leverage for African teams.
+                When I’m not shipping code, I’m usually deep in industrial automation labs
+                or exploring new ways AI can create leverage for African teams.
               </p>
             </div>
 
@@ -514,20 +615,31 @@ export default function GEOTechPortfolio() {
             Tell me about your project. I reply within 24 hours.
           </p>
 
-          <form onSubmit={handleContact} className="space-y-4 text-left">
+          {/* 
+            Replace YOUR_FORM_ID with your Formspree form ID 
+            Example: https://formspree.io/f/xpwgkqyz
+          */}
+          <form
+            action="https://formspree.io/f/xnjelqyw"
+            method="POST"
+            className="space-y-4 text-left"
+          >
             <input
               type="text"
+              name="name"
               placeholder="Your name"
               className="w-full px-5 py-3.5 rounded-xl bg-zinc-900 border border-white/10 focus:border-cyan-500 outline-none transition"
               required
             />
             <input
               type="email"
+              name="email"
               placeholder="Email"
               className="w-full px-5 py-3.5 rounded-xl bg-zinc-900 border border-white/10 focus:border-cyan-500 outline-none transition"
               required
             />
             <textarea
+              name="message"
               placeholder="Project details..."
               rows={4}
               className="w-full px-5 py-3.5 rounded-xl bg-zinc-900 border border-white/10 focus:border-cyan-500 outline-none resize-none transition"
