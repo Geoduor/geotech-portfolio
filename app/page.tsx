@@ -48,6 +48,17 @@ const services = [
   { icon: <Cloud size={28} />, title: "Cloud & DevOps", desc: "Docker, CI/CD, Vercel/VPS deployment and reliable infrastructure." },
 ];
 
+const skills = [
+  { name: "TypeScript / JavaScript", level: 92 },
+  { name: "React / Next.js", level: 95 },
+  { name: "Python / FastAPI", level: 88 },
+  { name: "PostgreSQL / Supabase", level: 85 },
+  { name: "AI Agents & Prompt Engineering", level: 86 },
+  { name: "Go", level: 72 },
+  { name: "Docker & CI/CD", level: 80 },
+  { name: "System Design", level: 78 },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number = 0) => ({
@@ -107,6 +118,7 @@ export default function GEOTechPortfolio() {
           <div className="hidden md:flex items-center gap-8 text-sm text-zinc-400">
             <a href="#work" className="hover:text-white transition">Work</a>
             <a href="#services" className="hover:text-white transition">Services</a>
+            <a href="#skills" className="hover:text-white transition">Skills</a>
             <a href="#about" className="hover:text-white transition">About</a>
             <a href="#contact" className="hover:text-white transition">Contact</a>
           </div>
@@ -198,7 +210,7 @@ export default function GEOTechPortfolio() {
         </div>
       </motion.section>
 
-      {/* Selected Work – Visual Cards */}
+      {/* Selected Work */}
       <section id="work" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -242,7 +254,6 @@ export default function GEOTechPortfolio() {
                 onClick={() => setSelectedProject(p)}
                 className="group cursor-pointer bg-zinc-900/50 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-colors"
               >
-                {/* Visual header instead of photo */}
                 <div className={`h-44 bg-gradient-to-br ${p.color} flex items-center justify-center relative`}>
                   <div className="text-white/30 group-hover:text-white/50 transition-colors">
                     {p.icon}
@@ -307,32 +318,82 @@ export default function GEOTechPortfolio() {
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="py-24 px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ type: "spring", stiffness: 90, damping: 18 }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <p className="text-sm text-cyan-400 mb-3">ABOUT</p>
-          <h2 className="text-4xl font-bold tracking-tight mb-6">Geofry Oduor</h2>
-          <p className="text-lg text-zinc-400 leading-relaxed mb-6">
-            Mechanical Engineering student turned AI & full-stack engineer. I bridge hardware thinking with modern software to build scalable systems for African businesses, sports and agriculture.
-          </p>
-          <p className="text-zinc-400 leading-relaxed mb-8">
-            From industrial automation labs to production SaaS platforms — clean architecture, fast delivery, measurable impact.
-          </p>
-          <div className="flex justify-center gap-4">
-            <a href="https://github.com/Geoduor" target="_blank" className="p-3 rounded-full border border-white/10 hover:border-cyan-400 transition">
-              <Github size={20} />
-            </a>
-            <a href="https://www.linkedin.com/in/geofry-oduor-b021b5272" target="_blank" className="p-3 rounded-full border border-white/10 hover:border-cyan-400 transition">
-              <Linkedin size={20} />
-            </a>
+      {/* Skills Section */}
+      <section id="skills" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <p className="text-sm text-cyan-400 mb-2">CAPABILITIES</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Skills & Tools</h2>
+          </motion.div>
+
+          <div className="space-y-6">
+            {skills.map((skill, i) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05, type: "spring", stiffness: 100, damping: 18 }}
+              >
+                <div className="flex justify-between text-sm mb-2">
+                  <span className="font-medium">{skill.name}</span>
+                  <span className="text-cyan-400">{skill.level}%</span>
+                </div>
+                <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, delay: 0.2 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                    className="h-full bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full"
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
+        </div>
+      </section>
+
+      {/* About – Improved */}
+      <section id="about" className="py-24 px-6 bg-zinc-950/40">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 90, damping: 18 }}
+            className="text-center"
+          >
+            <p className="text-sm text-cyan-400 mb-3">ABOUT</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">Geofry Oduor</h2>
+            
+            <div className="space-y-6 text-lg text-zinc-400 leading-relaxed text-left md:text-center">
+              <p>
+                Mechanical Engineering student turned AI & full-stack engineer based in Nairobi. I combine systems thinking from engineering with modern software development to build products that solve real problems.
+              </p>
+              <p>
+                My focus is on intelligent systems — AI automation, SaaS platforms, and business tools for sports, agriculture, and African enterprises. I care about clean architecture, fast delivery, and measurable impact.
+              </p>
+              <p>
+                When I’m not shipping code, I’m usually deep in industrial automation labs or exploring new ways AI can create leverage for African teams.
+              </p>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-10">
+              <a href="https://github.com/Geoduor" target="_blank" className="p-3 rounded-full border border-white/10 hover:border-cyan-400 transition">
+                <Github size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/geofry-oduor-b021b5272" target="_blank" className="p-3 rounded-full border border-white/10 hover:border-cyan-400 transition">
+                <Linkedin size={20} />
+              </a>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Contact */}
