@@ -221,7 +221,7 @@ export default function GEOTechPortfolio() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-bg-0 text-text-primary overflow-x-hidden">
       {/* Background decoration */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(34,211,238,0.08),transparent)]" />
@@ -415,7 +415,7 @@ export default function GEOTechPortfolio() {
               <MapPin size={16} className="text-brand-pink" />
               Nairobi, Kenya
             </span>
-            <span className="w-1 h-1 rounded-full bg-zinc-700" />
+            <span className="w-1 h-1 rounded-full bg-bg-3" />
             <span className="flex items-center gap-2">
               <Sparkles size={16} className="text-brand-orange" />
               5+ years experience
@@ -522,7 +522,7 @@ export default function GEOTechPortfolio() {
                         LIVE
                       </span>
                     ) : (
-                      <span className="text-xs font-medium px-3 py-1 bg-zinc-500/20 text-text-secondary rounded-full border border-zinc-500/30 backdrop-blur-sm">
+                      <span className="text-xs font-medium px-3 py-1 bg-text-tertiary/20 text-text-secondary rounded-full border border-text-tertiary/30 backdrop-blur-sm">
                         COMING SOON
                       </span>
                     )}
@@ -926,7 +926,7 @@ export default function GEOTechPortfolio() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-6"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
@@ -967,7 +967,7 @@ export default function GEOTechPortfolio() {
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                  className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
                 >
                   <span className="text-lg leading-none">×</span>
                 </button>
@@ -1014,7 +1014,7 @@ export default function GEOTechPortfolio() {
                       View Live
                     </a>
                   ) : (
-                    <span className="flex-1 py-3.5 bg-zinc-700 text-text-secondary rounded-xl text-center font-medium cursor-not-allowed">
+                    <span className="flex-1 py-3.5 bg-bg-3 text-text-secondary rounded-xl text-center font-medium cursor-not-allowed">
                       Coming Soon
                     </span>
                   )}
