@@ -32,7 +32,8 @@ const projects = [
     tech: ['React', 'FastAPI', 'PostgreSQL', 'PWA'],
     liveUrl: 'https://khu-live-app.vercel.app/',
     githubUrl: 'https://github.com/Geoduor/khu-live-app',
-    color: 'from-cyan-500/20 to-blue-600/20',
+    image: 'https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&h=500&fit=crop',
+    imageFallback: 'from-cyan-500/20 to-blue-600/20',
     icon: <Zap size={40} />,
     metrics: 'Live production • Real-time data • Fan-facing platform',
     caseStudy: {
@@ -53,7 +54,8 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
     liveUrl: 'https://off-pitch-nine.vercel.app/',
     githubUrl: 'https://github.com/Geoduor/OFF-PITCH',
-    color: 'from-red-500/25 to-rose-700/25',
+    image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop',
+    imageFallback: 'from-red-500/25 to-rose-700/25',
     icon: <Terminal size={40} />,
     metrics: 'Production website • Brand platform • Mobile-first',
     caseStudy: {
@@ -72,9 +74,10 @@ const projects = [
     description:
       'AI-powered farm management platform helping African farmers with crop analytics and automation.',
     tech: ['TypeScript', 'Supabase', 'AI APIs'],
-    liveUrl: 'https://geoduor-agripride-insights.vercel.app/',
+    liveUrl: null,
     githubUrl: 'https://github.com/Geoduor/agripride-insights',
-    color: 'from-violet-500/20 to-purple-600/20',
+    image: 'https://images.unsplash.com/photo-1574948645702-ccacbeae1d54?w=800&h=500&fit=crop',
+    imageFallback: 'from-violet-500/20 to-purple-600/20',
     icon: <Database size={40} />,
     metrics: 'AI-powered • Agriculture focus • Analytics platform',
     caseStudy: {
@@ -450,18 +453,37 @@ export default function GEOTechPortfolio() {
                 onClick={() => setSelectedProject(p)}
                 className="group cursor-pointer relative bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 border border-white/[0.06] rounded-2xl overflow-hidden backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300"
               >
-                <div
-                  className={`h-48 bg-gradient-to-br ${p.color} flex items-center justify-center relative overflow-hidden`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent" />
-                  <div className="text-white/40 group-hover:text-white/60 transition-colors duration-300 relative z-10">
+                <div className="h-48 relative overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.classList.add(`bg-gradient-to-br`, ...p.imageFallback.split(' '));
+                      }
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
+                  <div className="absolute top-4 left-4 text-cyan-400/60 group-hover:text-cyan-400 transition-colors duration-300">
                     {p.icon}
                   </div>
-                  {p.liveUrl && (
-                    <span className="absolute top-4 right-4 text-xs font-medium px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full border border-emerald-500/30 backdrop-blur-sm">
-                      LIVE
-                    </span>
-                  )}
+                  <div className="absolute top-4 right-4 flex gap-2">
+                    {p.liveUrl ? (
+                      <span className="text-xs font-medium px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full border border-emerald-500/30 backdrop-blur-sm">
+                        LIVE
+                      </span>
+                    ) : (
+                      <span className="text-xs font-medium px-3 py-1 bg-zinc-500/20 text-zinc-400 rounded-full border border-zinc-500/30 backdrop-blur-sm">
+                        COMING SOON
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="p-7">
                   <p className="text-xs text-zinc-500 uppercase tracking-widest mb-3 font-medium">
@@ -878,73 +900,91 @@ export default function GEOTechPortfolio() {
                 y: 20,
                 transition: { duration: 0.2 },
               }}
-              className="bg-zinc-900/95 backdrop-blur-xl rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto border border-white/[0.08]"
+              className="bg-zinc-900/95 backdrop-blur-xl rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-white/[0.08]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <p className="text-xs text-zinc-500 uppercase tracking-widest mb-2 font-medium">
+              <div className="relative h-56 -mx-8 -mt-8 mb-8 overflow-hidden">
+                <Image
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent" />
+                <div className="absolute bottom-6 left-8 right-8">
+                  <p className="text-xs text-cyan-400 uppercase tracking-widest mb-2 font-medium">
                     {selectedProject.category}
                   </p>
-                  <h3 className="text-2xl font-bold">{selectedProject.title}</h3>
+                  <h3 className="text-3xl font-bold">{selectedProject.title}</h3>
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-zinc-500 hover:text-white hover:bg-white/10 transition-colors"
+                  className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-colors"
                 >
                   <span className="text-lg leading-none">×</span>
                 </button>
               </div>
 
-              <p className="text-zinc-400 mb-5 leading-relaxed">{selectedProject.description}</p>
-              {selectedProject.metrics && (
-                <p className="text-sm text-cyan-400 mb-7 font-medium">{selectedProject.metrics}</p>
-              )}
+              <div className="px-8 pb-8">
+                <p className="text-zinc-400 mb-5 leading-relaxed">{selectedProject.description}</p>
+                {selectedProject.metrics && (
+                  <p className="text-sm text-cyan-400 mb-7 font-medium">{selectedProject.metrics}</p>
+                )}
 
-              {selectedProject.caseStudy && (
-                <div className="space-y-6 mb-8">
-                  <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Problem</h4>
-                    <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.problem}</p>
+                {selectedProject.caseStudy && (
+                  <div className="space-y-6 mb-8">
+                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                      <h4 className="text-sm font-semibold text-cyan-400 mb-2">Problem</h4>
+                      <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.problem}</p>
+                    </div>
+                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                      <h4 className="text-sm font-semibold text-emerald-400 mb-2">Solution</h4>
+                      <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.solution}</p>
+                    </div>
+                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+                      <h4 className="text-sm font-semibold text-cyan-400 mb-2">Impact</h4>
+                      <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.impact}</p>
+                    </div>
                   </div>
-                  <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                    <h4 className="text-sm font-semibold text-emerald-400 mb-2">Solution</h4>
-                    <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.solution}</p>
-                  </div>
-                  <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Impact</h4>
-                    <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.impact}</p>
-                  </div>
+                )}
+
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {selectedProject.tech.map((t: string) => (
+                    <span key={t} className="text-xs px-3 py-1.5 bg-white/[0.04] text-zinc-400 rounded-lg border border-white/[0.06]">
+                      {t}
+                    </span>
+                  ))}
                 </div>
-              )}
 
-              <div className="flex flex-wrap gap-2 mb-8">
-                {selectedProject.tech.map((t: string) => (
-                  <span key={t} className="text-xs px-3 py-1.5 bg-white/[0.04] text-zinc-400 rounded-lg border border-white/[0.06]">
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-3">
-                {selectedProject.liveUrl && (
-                  <a
-                    href={selectedProject.liveUrl}
-                    target="_blank"
-                    className="flex-1 py-3.5 bg-white text-black rounded-xl text-center font-medium hover:bg-cyan-400 transition-all duration-300"
-                  >
-                    View Live
-                  </a>
-                )}
-                {selectedProject.githubUrl && (
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    className="flex-1 py-3.5 border border-white/[0.1] rounded-xl text-center hover:bg-white/[0.05] transition-all duration-300 flex items-center justify-center gap-2"
-                  >
-                    <Github size={16} /> GitHub
-                  </a>
-                )}
+                <div className="flex gap-3">
+                  {selectedProject.liveUrl ? (
+                    <a
+                      href={selectedProject.liveUrl}
+                      target="_blank"
+                      className="flex-1 py-3.5 bg-white text-black rounded-xl text-center font-medium hover:bg-cyan-400 transition-all duration-300"
+                    >
+                      View Live
+                    </a>
+                  ) : (
+                    <span className="flex-1 py-3.5 bg-zinc-700 text-zinc-400 rounded-xl text-center font-medium cursor-not-allowed">
+                      Coming Soon
+                    </span>
+                  )}
+                  {selectedProject.githubUrl && (
+                    <a
+                      href={selectedProject.githubUrl}
+                      target="_blank"
+                      className="flex-1 py-3.5 border border-white/[0.1] rounded-xl text-center hover:bg-white/[0.05] transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <Github size={16} /> GitHub
+                    </a>
+                  )}
+                </div>
               </div>
             </motion.div>
           </motion.div>
