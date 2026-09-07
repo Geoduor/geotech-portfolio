@@ -178,6 +178,25 @@ export default function GEOTechPortfolio() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      setIsDark(true);
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
+    document.documentElement.classList.toggle('light', !next);
+    document.documentElement.classList.toggle('dark', next);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -215,14 +234,14 @@ export default function GEOTechPortfolio() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-        className="fixed top-0 z-50 w-full backdrop-blur-2xl bg-[#080808]/70 border-b border-white/[0.05]"
+        className="fixed top-0 z-50 w-full border-b border-border-custom backdrop-blur-xl bg-bg-1/70"
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-emerald-500 flex items-center justify-center font-bold text-sm text-black group-hover:scale-105 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-pink to-brand-orange flex items-center justify-center font-bold text-sm text-white group-hover:scale-105 transition-transform">
               G
             </div>
-            <span className="text-lg font-semibold tracking-tight">GEOTech</span>
+            <span className="text-lg font-semibold tracking-tight font-display">GEOTech</span>
           </a>
 
           <div className="hidden md:flex items-center gap-1 text-sm">
@@ -232,8 +251,8 @@ export default function GEOTechPortfolio() {
                 href={`#${item.toLowerCase()}`}
                 className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                   activeSection === item.toLowerCase()
-                    ? 'text-white bg-white/5'
-                    : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                    ? 'text-brand-pink bg-brand-pink/10'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
                 }`}
               >
                 {item}
@@ -242,29 +261,53 @@ export default function GEOTechPortfolio() {
           </div>
 
           <div className="flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg border border-border-custom hover:border-brand-pink/50 hover:bg-brand-pink/5 transition-all duration-200"
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-yellow">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-orange">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
+
             <a
               href="/Geofry_Oduor_CV.pdf"
               target="_blank"
-              className="hidden sm:flex items-center gap-2 text-sm px-4 py-2 rounded-full border border-white/20 hover:border-cyan-400 transition"
+              className="hidden sm:flex items-center gap-2 text-sm px-4 py-2 rounded-full border border-border-custom hover:border-brand-pink/50 hover:bg-brand-pink/5 transition-all duration-200"
             >
               <Download size={16} /> CV
             </a>
             <a
               href="#contact"
-              className="hidden sm:inline-block text-sm px-5 py-2 rounded-full bg-white text-black font-medium hover:bg-cyan-400 transition"
+              className="hidden sm:inline-flex text-sm px-5 py-2 rounded-full bg-gradient-brand text-white font-semibold shadow-[0_10px_30px_-12px_rgba(235,46,165,0.55)] hover:-translate-y-0.5 transition-all duration-200"
             >
               Let's talk
             </a>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2"
+              className="md:hidden p-2 rounded-lg border border-border-custom"
               aria-label="Toggle menu"
             >
-              <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`block h-0.5 bg-white transition ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`block h-0.5 bg-white transition ${mobileOpen ? 'opacity-0' : ''}`} />
-                <span className={`block h-0.5 bg-white transition ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span className={`block h-0.5 bg-text-primary transition ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block h-0.5 bg-text-primary transition ${mobileOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-0.5 bg-text-primary transition ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
               </div>
             </button>
           </div>
@@ -276,15 +319,15 @@ export default function GEOTechPortfolio() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-white/5 bg-[#0a0a0a]"
+              className="md:hidden border-t border-border-custom bg-bg-1"
             >
-              <div className="flex flex-col px-6 py-4 gap-4 text-sm">
+              <div className="flex flex-col px-6 py-4 gap-1 text-sm">
                 {['Work', 'Services', 'Skills', 'Process', 'About', 'Contact'].map((item) => (
                   <a
                     key={item}
                     href={`#${item.toLowerCase()}`}
                     onClick={() => setMobileOpen(false)}
-                    className="text-zinc-300 hover:text-white"
+                    className="text-text-secondary hover:text-brand-pink py-2 transition-colors"
                   >
                     {item}
                   </a>
@@ -292,7 +335,7 @@ export default function GEOTechPortfolio() {
                 <a
                   href="/Geofry_Oduor_CV.pdf"
                   target="_blank"
-                  className="text-cyan-400 font-medium"
+                  className="text-brand-pink font-medium py-2"
                 >
                   Download CV
                 </a>
@@ -309,11 +352,11 @@ export default function GEOTechPortfolio() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.08] text-sm text-zinc-400 mb-10"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border-custom bg-bg-1 text-sm text-text-secondary mb-10"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-pink opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-pink"></span>
             </span>
             Available for new projects
           </motion.div>
@@ -326,7 +369,7 @@ export default function GEOTechPortfolio() {
           >
             I build intelligent software
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-pulse">
+            <span className="bg-gradient-to-r brand-pink brand-orange brand-yellow bg-clip-text text-transparent bg-[length:200%_auto] animate-pulse">
               for African businesses.
             </span>
           </motion.h1>
@@ -335,7 +378,7 @@ export default function GEOTechPortfolio() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
-            className="text-xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-xl text-text-secondary max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             AI automation, SaaS platforms and full-stack systems for sports, agriculture and enterprises. Clean architecture. Fast delivery. Real impact.
           </motion.p>
@@ -348,7 +391,7 @@ export default function GEOTechPortfolio() {
           >
             <a
               href="#work"
-              className="group px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-cyan-400 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-cyan-500/10"
+              className="group px-8 py-4 bg-gradient-brand text-white rounded-full font-semibold shadow-\[0_10px_30px_-12px_rgba\(235,46,165,0.55\)\] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 "
             >
               View selected work 
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -356,7 +399,7 @@ export default function GEOTechPortfolio() {
             <a
               href="/Geofry_Oduor_CV.pdf"
               target="_blank"
-              className="px-8 py-4 border border-white/10 rounded-full hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 flex items-center gap-2"
+              className="px-8 py-4 border border-border-custom rounded-full hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 flex items-center gap-2"
             >
               <Download size={18} /> Download CV
             </a>
@@ -366,15 +409,15 @@ export default function GEOTechPortfolio() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 110, damping: 18, delay: 0.45 }}
-            className="mt-16 flex items-center justify-center gap-6 text-sm text-zinc-500"
+            className="mt-16 flex items-center justify-center gap-6 text-sm text-text-tertiary"
           >
             <span className="flex items-center gap-2">
-              <MapPin size={16} className="text-cyan-400" />
+              <MapPin size={16} className="text-brand-pink" />
               Nairobi, Kenya
             </span>
             <span className="w-1 h-1 rounded-full bg-zinc-700" />
             <span className="flex items-center gap-2">
-              <Sparkles size={16} className="text-emerald-400" />
+              <Sparkles size={16} className="text-brand-orange" />
               5+ years experience
             </span>
           </motion.div>
@@ -387,20 +430,20 @@ export default function GEOTechPortfolio() {
         whileInView="visible"
         viewport={{ once: true, margin: '-50px' }}
         variants={staggerContainer}
-        className="border-y border-white/[0.05] py-16"
+        className="border-y border-border-custom py-16"
       >
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: '10+', label: 'Projects shipped', accent: 'text-cyan-400' },
-            { value: '3', label: 'Live platforms', accent: 'text-emerald-400' },
-            { value: '100%', label: 'Client ownership', accent: 'text-cyan-400' },
-            { value: 'Nairobi', label: 'Based in Kenya', accent: 'text-emerald-400' },
+            { value: '10+', label: 'Projects shipped', accent: 'text-brand-pink' },
+            { value: '3', label: 'Live platforms', accent: 'text-brand-orange' },
+            { value: '100%', label: 'Client ownership', accent: 'text-brand-pink' },
+            { value: 'Nairobi', label: 'Based in Kenya', accent: 'text-brand-orange' },
           ].map((stat, i) => (
             <motion.div key={i} variants={fadeUp} custom={i} className="relative">
               <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent rounded-2xl" />
               <div className="relative py-4">
                 <div className={`text-5xl font-bold ${stat.accent} mb-2`}>{stat.value}</div>
-                <div className="text-sm text-zinc-500">{stat.label}</div>
+                <div className="text-sm text-text-tertiary">{stat.label}</div>
               </div>
             </motion.div>
           ))}
@@ -418,7 +461,7 @@ export default function GEOTechPortfolio() {
             className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14"
           >
             <div>
-              <p className="text-sm font-medium text-cyan-400 mb-3 tracking-wider">SELECTED WORK</p>
+              <p className="text-sm font-medium text-brand-pink mb-3 tracking-wider">SELECTED WORK</p>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
                 Projects that matter
               </h2>
@@ -426,7 +469,7 @@ export default function GEOTechPortfolio() {
             <a
               href="https://github.com/Geoduor"
               target="_blank"
-              className="group text-sm text-zinc-400 hover:text-white flex items-center gap-2 transition-colors"
+              className="group text-sm text-text-secondary hover:text-white flex items-center gap-2 transition-colors"
             >
               View all on GitHub 
               <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -451,7 +494,7 @@ export default function GEOTechPortfolio() {
                 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setSelectedProject(p)}
-                className="group cursor-pointer relative bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 border border-white/[0.06] rounded-2xl overflow-hidden backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300"
+                className="group cursor-pointer relative bg-gradient-to-b from-bg-2 to-bg-1 glass-card rounded-2xl overflow-hidden hover:border-brand-pink/30 transition-all duration-300"
               >
                 <div className="h-48 relative overflow-hidden">
                   <Image
@@ -470,37 +513,37 @@ export default function GEOTechPortfolio() {
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
-                  <div className="absolute top-4 left-4 text-cyan-400/60 group-hover:text-cyan-400 transition-colors duration-300">
+                  <div className="absolute top-4 left-4 text-brand-pink/60 group-hover:text-brand-pink transition-colors duration-300">
                     {p.icon}
                   </div>
                   <div className="absolute top-4 right-4 flex gap-2">
                     {p.liveUrl ? (
-                      <span className="text-xs font-medium px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full border border-emerald-500/30 backdrop-blur-sm">
+                      <span className="text-xs font-medium px-3 py-1 bg-emerald-500/20 text-brand-orange rounded-full border border-emerald-500/30 backdrop-blur-sm">
                         LIVE
                       </span>
                     ) : (
-                      <span className="text-xs font-medium px-3 py-1 bg-zinc-500/20 text-zinc-400 rounded-full border border-zinc-500/30 backdrop-blur-sm">
+                      <span className="text-xs font-medium px-3 py-1 bg-zinc-500/20 text-text-secondary rounded-full border border-zinc-500/30 backdrop-blur-sm">
                         COMING SOON
                       </span>
                     )}
                   </div>
                 </div>
                 <div className="p-7">
-                  <p className="text-xs text-zinc-500 uppercase tracking-widest mb-3 font-medium">
+                  <p className="text-xs text-text-tertiary uppercase tracking-widest mb-3 font-medium">
                     {p.category}
                   </p>
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                  <h3 className="text-xl font-semibold mb-3 group-hover:text-brand-pink transition-colors duration-300">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-zinc-400 line-clamp-2 mb-4 leading-relaxed">{p.description}</p>
+                  <p className="text-sm text-text-secondary line-clamp-2 mb-4 leading-relaxed">{p.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {p.tech.slice(0, 3).map((t) => (
-                      <span key={t} className="text-xs px-2.5 py-1 bg-white/[0.04] text-zinc-400 rounded-md border border-white/[0.06]">
+                      <span key={t} className="text-xs px-2.5 py-1 bg-white/[0.04] text-text-secondary rounded-md border border-white/[0.06]">
                         {t}
                       </span>
                     ))}
                     {p.tech.length > 3 && (
-                      <span className="text-xs px-2.5 py-1 text-zinc-500">+{p.tech.length - 3}</span>
+                      <span className="text-xs px-2.5 py-1 text-text-tertiary">+{p.tech.length - 3}</span>
                     )}
                   </div>
                 </div>
@@ -520,11 +563,11 @@ export default function GEOTechPortfolio() {
             transition={{ type: 'spring', stiffness: 100, damping: 18 }}
             className="text-center mb-16"
           >
-            <p className="text-sm font-medium text-cyan-400 mb-3 tracking-wider">WHAT I BUILD</p>
+            <p className="text-sm font-medium text-brand-pink mb-3 tracking-wider">WHAT I BUILD</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               Software solutions
             </h2>
-            <p className="text-zinc-400 mt-4 max-w-lg mx-auto">
+            <p className="text-text-secondary mt-4 max-w-lg mx-auto">
               From AI automation to full-stack platforms, I deliver solutions that drive real business value.
             </p>
           </motion.div>
@@ -545,13 +588,13 @@ export default function GEOTechPortfolio() {
                   y: -4,
                   transition: { type: 'spring', stiffness: 300, damping: 22 },
                 }}
-                className="group p-8 rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/60 to-zinc-900/20 hover:border-cyan-500/30 transition-all duration-300"
+                className="group p-8 rounded-2xl border border-border-custom bg-gradient-to-b from-bg-2 to-bg-1/20 hover:border-brand-pink/30 transition-all duration-300"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 flex items-center justify-center text-brand-pink mb-6 group-hover:scale-110 transition-transform duration-300">
                   {s.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
-                <p className="text-zinc-400 leading-relaxed">{s.desc}</p>
+                <p className="text-text-secondary leading-relaxed">{s.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -567,7 +610,7 @@ export default function GEOTechPortfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-sm font-medium text-cyan-400 mb-3 tracking-wider">CAPABILITIES</p>
+            <p className="text-sm font-medium text-brand-pink mb-3 tracking-wider">CAPABILITIES</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               Skills & Tools
             </h2>
@@ -590,9 +633,9 @@ export default function GEOTechPortfolio() {
               >
                 <div className="flex justify-between text-sm mb-3">
                   <span className="font-medium">{skill.name}</span>
-                  <span className="text-cyan-400 font-medium">{skill.level}%</span>
+                  <span className="text-brand-pink font-medium">{skill.level}%</span>
                 </div>
-                <div className="h-2.5 bg-white/[0.04] rounded-full overflow-hidden border border-white/[0.03]">
+                <div className="h-2.5 bg-bg-3/50 rounded-full overflow-hidden border border-border-custom">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
@@ -602,7 +645,7 @@ export default function GEOTechPortfolio() {
                       delay: 0.2 + i * 0.05,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="h-full bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full relative"
+                    className="h-full bg-gradient-to-r from-brand-pink to-brand-orange rounded-full relative"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full blur-sm opacity-50" />
                   </motion.div>
@@ -622,7 +665,7 @@ export default function GEOTechPortfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-sm font-medium text-cyan-400 mb-3 tracking-wider">PROCESS</p>
+            <p className="text-sm font-medium text-brand-pink mb-3 tracking-wider">PROCESS</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               How I work
             </h2>
@@ -641,11 +684,11 @@ export default function GEOTechPortfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative p-6 rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/60 to-zinc-900/20"
+                className="relative p-6 rounded-2xl border border-border-custom bg-gradient-to-b from-bg-2 to-bg-1/20"
               >
-                <div className="text-cyan-400 font-mono text-sm mb-4 tracking-wider">{item.step}</div>
+                <div className="text-brand-pink font-mono text-sm mb-4 tracking-wider">{item.step}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-text-secondary leading-relaxed">{item.desc}</p>
                 {i < 3 && (
                   <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-px bg-gradient-to-r from-cyan-500/50 to-transparent" />
                 )}
@@ -664,7 +707,7 @@ export default function GEOTechPortfolio() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <p className="text-sm font-medium text-cyan-400 mb-3 tracking-wider">TESTIMONIALS</p>
+            <p className="text-sm font-medium text-brand-pink mb-3 tracking-wider">TESTIMONIALS</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               What clients say
             </h2>
@@ -678,23 +721,23 @@ export default function GEOTechPortfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-7 rounded-2xl border border-white/[0.06] bg-gradient-to-b from-zinc-900/60 to-zinc-900/20"
+                className="p-7 rounded-2xl border border-border-custom bg-gradient-to-b from-bg-2 to-bg-1/20"
               >
                 <div className="flex gap-1 mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 text-cyan-400 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-4 h-4 text-brand-pink fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
                 <p className="text-zinc-300 mb-6 leading-relaxed">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 border border-cyan-500/30 flex items-center justify-center text-sm font-medium text-cyan-400">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-pink/20 to-brand-orange/20 border border-brand-pink/30 flex items-center justify-center text-sm font-medium text-brand-pink">
                     {t.avatar}
                   </div>
                   <div>
                     <p className="font-medium text-sm">{t.name}</p>
-                    <p className="text-xs text-zinc-500">{t.role}</p>
+                    <p className="text-xs text-text-tertiary">{t.role}</p>
                   </div>
                 </div>
               </motion.div>
@@ -713,13 +756,13 @@ export default function GEOTechPortfolio() {
             transition={{ type: 'spring', stiffness: 90, damping: 18 }}
             className="text-center"
           >
-            <p className="text-sm font-medium text-cyan-400 mb-4 tracking-wider">ABOUT</p>
+            <p className="text-sm font-medium text-brand-pink mb-4 tracking-wider">ABOUT</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-10">
               Geofry Oduor
             </h2>
 
             <div className="relative mb-12">
-              <div className="w-32 h-32 mx-auto rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-cyan-500/10">
+              <div className="w-32 h-32 mx-auto rounded-2xl overflow-hidden border-2 border-border-custom shadow-2xl shadow-cyan-500/10">
                 <Image
                   src="/geofry-portrait.jpg"
                   alt="Geofry Oduor"
@@ -729,12 +772,12 @@ export default function GEOTechPortfolio() {
                   unoptimized
                 />
               </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-zinc-900 border border-white/10 rounded-full text-xs text-zinc-400">
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-bg-2 border border-border-custom rounded-full text-xs text-text-secondary">
                 Available for hire
               </div>
             </div>
 
-            <div className="space-y-6 text-lg text-zinc-400 leading-relaxed text-left md:text-center max-w-2xl mx-auto">
+            <div className="space-y-6 text-lg text-text-secondary leading-relaxed text-left md:text-center max-w-2xl mx-auto">
               <p>
                 Mechanical Engineering student turned AI & full-stack engineer based in Nairobi.
                 I combine systems thinking from engineering with modern software development to
@@ -755,20 +798,20 @@ export default function GEOTechPortfolio() {
               <a
                 href="https://github.com/Geoduor"
                 target="_blank"
-                className="p-3.5 rounded-xl border border-white/[0.08] hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-300"
+                className="p-3.5 rounded-xl border border-border-custom hover:border-brand-pink/50 hover:bg-brand-pink/5 transition-all duration-300"
               >
                 <Github size={20} />
               </a>
               <a
                 href="https://www.linkedin.com/in/geofry-oduor-b021b5272"
                 target="_blank"
-                className="p-3.5 rounded-xl border border-white/[0.08] hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-300"
+                className="p-3.5 rounded-xl border border-border-custom hover:border-brand-pink/50 hover:bg-brand-pink/5 transition-all duration-300"
               >
                 <Linkedin size={20} />
               </a>
               <a
                 href="mailto:geofryoduor108@gmail.com"
-                className="p-3.5 rounded-xl border border-white/[0.08] hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-300"
+                className="p-3.5 rounded-xl border border-border-custom hover:border-brand-pink/50 hover:bg-brand-pink/5 transition-all duration-300"
               >
                 <Mail size={20} />
               </a>
@@ -778,7 +821,7 @@ export default function GEOTechPortfolio() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-28 px-6 border-t border-white/[0.05]">
+      <section id="contact" className="py-28 px-6 border-t border-border-custom">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -786,11 +829,11 @@ export default function GEOTechPortfolio() {
           transition={{ type: 'spring', stiffness: 90, damping: 18 }}
           className="max-w-xl mx-auto text-center"
         >
-          <p className="text-sm font-medium text-cyan-400 mb-3 tracking-wider">CONTACT</p>
+          <p className="text-sm font-medium text-brand-pink mb-3 tracking-wider">CONTACT</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
             Let's build something
           </h2>
-          <p className="text-zinc-400 mb-12">
+          <p className="text-text-secondary mb-12">
             Tell me about your project. I reply within 24 hours.
           </p>
 
@@ -804,7 +847,7 @@ export default function GEOTechPortfolio() {
                 type="text"
                 name="name"
                 placeholder="Your name"
-                className="w-full px-5 py-4 rounded-xl bg-zinc-900/80 border border-white/[0.06] focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/10 outline-none transition-all duration-300 placeholder:text-zinc-500"
+                className="w-full px-5 py-4 rounded-xl bg-bg-2/80 border border-white/[0.06] focus:border-brand-pink/50 focus:ring-2 focus:ring-brand-pink/10 outline-none transition-all duration-300 placeholder:text-text-tertiary"
                 required
               />
             </div>
@@ -813,7 +856,7 @@ export default function GEOTechPortfolio() {
                 type="email"
                 name="email"
                 placeholder="Email address"
-                className="w-full px-5 py-4 rounded-xl bg-zinc-900/80 border border-white/[0.06] focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/10 outline-none transition-all duration-300 placeholder:text-zinc-500"
+                className="w-full px-5 py-4 rounded-xl bg-bg-2/80 border border-white/[0.06] focus:border-brand-pink/50 focus:ring-2 focus:ring-brand-pink/10 outline-none transition-all duration-300 placeholder:text-text-tertiary"
                 required
               />
             </div>
@@ -822,13 +865,13 @@ export default function GEOTechPortfolio() {
                 name="message"
                 placeholder="Tell me about your project..."
                 rows={5}
-                className="w-full px-5 py-4 rounded-xl bg-zinc-900/80 border border-white/[0.06] focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/10 outline-none transition-all duration-300 resize-none placeholder:text-zinc-500"
+                className="w-full px-5 py-4 rounded-xl bg-bg-2/80 border border-white/[0.06] focus:border-brand-pink/50 focus:ring-2 focus:ring-brand-pink/10 outline-none transition-all duration-300 resize-none placeholder:text-text-tertiary"
                 required
               />
             </div>
             <button
               type="submit"
-              className="w-full py-4 bg-white text-black rounded-xl font-medium hover:bg-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/20"
+              className="w-full py-4 bg-white text-black rounded-xl font-medium hover:bg-cyan-400 transition-all duration-300  hover:shadow-cyan-500/20"
             >
               Send message
             </button>
@@ -837,19 +880,19 @@ export default function GEOTechPortfolio() {
           <div className="mt-14 flex flex-col sm:flex-row justify-center gap-6 text-sm">
             <a
               href="mailto:geofryoduor108@gmail.com"
-              className="flex items-center justify-center gap-2 text-zinc-400 hover:text-white transition-colors"
+              className="flex items-center justify-center gap-2 text-text-secondary hover:text-white transition-colors"
             >
-              <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center">
-                <Mail size={16} className="text-cyan-400" />
+              <div className="w-10 h-10 rounded-xl bg-bg-3/30 border border-border-custom flex items-center justify-center">
+                <Mail size={16} className="text-brand-pink" />
               </div>
               geofryoduor108@gmail.com
             </a>
             <a
               href="tel:+254707628505"
-              className="flex items-center justify-center gap-2 text-zinc-400 hover:text-white transition-colors"
+              className="flex items-center justify-center gap-2 text-text-secondary hover:text-white transition-colors"
             >
-              <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center">
-                <Phone size={16} className="text-emerald-400" />
+              <div className="w-10 h-10 rounded-xl bg-bg-3/30 border border-border-custom flex items-center justify-center">
+                <Phone size={16} className="text-brand-orange" />
               </div>
               +254 707 628 505
             </a>
@@ -857,21 +900,21 @@ export default function GEOTechPortfolio() {
         </motion.div>
       </section>
 
-      <footer className="py-10 text-center border-t border-white/[0.05]">
+      <footer className="py-10 text-center border-t border-border-custom">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-400 to-emerald-500 flex items-center justify-center font-bold text-xs text-black">
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-pink to-brand-orange flex items-center justify-center font-bold text-xs text-black">
               G
             </div>
-            <span className="text-sm text-zinc-500">Geofry Oduor</span>
+            <span className="text-sm text-text-tertiary">Geofry Oduor</span>
           </div>
           <p className="text-xs text-zinc-600">
             © {new Date().getFullYear()} GEOTech · Built with Next.js
           </p>
           <div className="flex items-center gap-4 text-xs text-zinc-600">
-            <a href="https://github.com/Geoduor" target="_blank" className="hover:text-zinc-400 transition">GitHub</a>
+            <a href="https://github.com/Geoduor" target="_blank" className="hover:text-text-secondary transition">GitHub</a>
             <span>·</span>
-            <a href="https://www.linkedin.com/in/geofry-oduor-b021b5272" target="_blank" className="hover:text-zinc-400 transition">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/geofry-oduor-b021b5272" target="_blank" className="hover:text-text-secondary transition">LinkedIn</a>
           </div>
         </div>
       </footer>
@@ -900,7 +943,7 @@ export default function GEOTechPortfolio() {
                 y: 20,
                 transition: { duration: 0.2 },
               }}
-              className="bg-zinc-900/95 backdrop-blur-xl rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-white/[0.08]"
+              className="bg-bg-2/95 backdrop-blur-xl rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-white/[0.08]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative h-56 -mx-8 -mt-8 mb-8 overflow-hidden">
@@ -917,7 +960,7 @@ export default function GEOTechPortfolio() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-transparent" />
                 <div className="absolute bottom-6 left-8 right-8">
-                  <p className="text-xs text-cyan-400 uppercase tracking-widest mb-2 font-medium">
+                  <p className="text-xs text-brand-pink uppercase tracking-widest mb-2 font-medium">
                     {selectedProject.category}
                   </p>
                   <h3 className="text-3xl font-bold">{selectedProject.title}</h3>
@@ -931,31 +974,31 @@ export default function GEOTechPortfolio() {
               </div>
 
               <div className="px-8 pb-8">
-                <p className="text-zinc-400 mb-5 leading-relaxed">{selectedProject.description}</p>
+                <p className="text-text-secondary mb-5 leading-relaxed">{selectedProject.description}</p>
                 {selectedProject.metrics && (
-                  <p className="text-sm text-cyan-400 mb-7 font-medium">{selectedProject.metrics}</p>
+                  <p className="text-sm text-brand-pink mb-7 font-medium">{selectedProject.metrics}</p>
                 )}
 
                 {selectedProject.caseStudy && (
                   <div className="space-y-6 mb-8">
-                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                      <h4 className="text-sm font-semibold text-cyan-400 mb-2">Problem</h4>
-                      <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.problem}</p>
+                    <div className="p-5 rounded-xl bg-bg-3/30 border border-border-custom">
+                      <h4 className="text-sm font-semibold text-brand-pink mb-2">Problem</h4>
+                      <p className="text-sm text-text-secondary leading-relaxed">{selectedProject.caseStudy.problem}</p>
                     </div>
-                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                      <h4 className="text-sm font-semibold text-emerald-400 mb-2">Solution</h4>
-                      <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.solution}</p>
+                    <div className="p-5 rounded-xl bg-bg-3/30 border border-border-custom">
+                      <h4 className="text-sm font-semibold text-brand-orange mb-2">Solution</h4>
+                      <p className="text-sm text-text-secondary leading-relaxed">{selectedProject.caseStudy.solution}</p>
                     </div>
-                    <div className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.05]">
-                      <h4 className="text-sm font-semibold text-cyan-400 mb-2">Impact</h4>
-                      <p className="text-sm text-zinc-400 leading-relaxed">{selectedProject.caseStudy.impact}</p>
+                    <div className="p-5 rounded-xl bg-bg-3/30 border border-border-custom">
+                      <h4 className="text-sm font-semibold text-brand-pink mb-2">Impact</h4>
+                      <p className="text-sm text-text-secondary leading-relaxed">{selectedProject.caseStudy.impact}</p>
                     </div>
                   </div>
                 )}
 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {selectedProject.tech.map((t: string) => (
-                    <span key={t} className="text-xs px-3 py-1.5 bg-white/[0.04] text-zinc-400 rounded-lg border border-white/[0.06]">
+                    <span key={t} className="text-xs px-3 py-1.5 bg-white/[0.04] text-text-secondary rounded-lg border border-white/[0.06]">
                       {t}
                     </span>
                   ))}
@@ -966,12 +1009,12 @@ export default function GEOTechPortfolio() {
                     <a
                       href={selectedProject.liveUrl}
                       target="_blank"
-                      className="flex-1 py-3.5 bg-white text-black rounded-xl text-center font-medium hover:bg-cyan-400 transition-all duration-300"
+                      className="flex-1 py-3.5 bg-gradient-brand text-white rounded-xl text-center font-semibold shadow-[0_10px_30px_-12px_rgba(235,46,165,0.55)] hover:-translate-y-0.5 transition-all duration-300"
                     >
                       View Live
                     </a>
                   ) : (
-                    <span className="flex-1 py-3.5 bg-zinc-700 text-zinc-400 rounded-xl text-center font-medium cursor-not-allowed">
+                    <span className="flex-1 py-3.5 bg-zinc-700 text-text-secondary rounded-xl text-center font-medium cursor-not-allowed">
                       Coming Soon
                     </span>
                   )}
@@ -979,7 +1022,7 @@ export default function GEOTechPortfolio() {
                     <a
                       href={selectedProject.githubUrl}
                       target="_blank"
-                      className="flex-1 py-3.5 border border-white/[0.1] rounded-xl text-center hover:bg-white/[0.05] transition-all duration-300 flex items-center justify-center gap-2"
+                      className="flex-1 py-3.5 border border-border-custom rounded-xl text-center hover:bg-bg-3/30 transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       <Github size={16} /> GitHub
                     </a>

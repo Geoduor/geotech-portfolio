@@ -56,8 +56,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable}`}>
-      <body className="min-h-screen bg-[#0a0716] text-[#f5f3ff] antialiased font-sans">
+    <html
+      lang="en"
+      className={`${sora.variable} ${inter.variable} light`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-screen bg-bg-0 text-text-primary antialiased font-sans">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         {children}
         <Toaster position="top-center" richColors />
       </body>

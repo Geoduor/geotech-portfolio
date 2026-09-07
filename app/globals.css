@@ -1,29 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  /* Background scale */
+  /* Light mode (default) */
+  --bg-0: #f8f7fc;
+  --bg-1: #ffffff;
+  --bg-2: #f3f1fa;
+  --bg-3: #ece9f7;
+  --text-primary: #0f0b1a;
+  --text-secondary: #4a455d;
+  --text-tertiary: #7a7590;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --brand-pink: #eb2ea5;
+  --brand-orange: #f68f22;
+  --brand-yellow: #f4ce29;
+  --gradient-brand: linear-gradient(90deg, #eb2ea5, #f68f22, #f4ce29);
+}
+
+.dark {
   --bg-0: #0a0716;
   --bg-1: #0e0a1c;
   --bg-2: #171325;
   --bg-3: #1f1a30;
-
-  /* Brand accents */
-  --brand-pink: #eb2ea5;
-  --brand-orange: #f68f22;
-  --brand-yellow: #f4ce29;
-  --gold-light: #f7e08b;
-  --gold-deep: #d9a92e;
-  --platinum: #f5f3ff;
-  --platinum-dim: #e8e5f4;
-  --platinum-gray: #b8b3cc;
-
-  /* Text tokens */
   --text-primary: #f5f3ff;
   --text-secondary: #c9c4dd;
   --text-tertiary: #8f89a6;
-
-  /* Gradient */
-  --gradient-brand: linear-gradient(90deg, #eb2ea5, #f68f22, #f4ce29);
+  --border-color: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
@@ -31,17 +32,13 @@
   --color-bg-1: var(--bg-1);
   --color-bg-2: var(--bg-2);
   --color-bg-3: var(--bg-3);
-  --color-brand-pink: var(--brand-pink);
-  --color-brand-orange: var(--brand-orange);
-  --color-brand-yellow: var(--brand-yellow);
-  --color-gold-light: var(--gold-light);
-  --color-gold-deep: var(--gold-deep);
-  --color-platinum: var(--platinum);
-  --color-platinum-dim: var(--platinum-dim);
-  --color-platinum-gray: var(--platinum-gray);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
+  --color-border-custom: var(--border-color);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-yellow: var(--brand-yellow);
   --font-sans: var(--font-inter);
   --font-display: var(--font-sora);
 }
@@ -60,6 +57,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -73,19 +71,18 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--bg-1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--text-tertiary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--text-secondary);
 }
 
-/* Utility classes */
 .font-display {
   font-family: var(--font-display), sans-serif;
 }
@@ -101,7 +98,6 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Scroll-triggered entrance */
 .scroll-reveal {
   transform: translateY(24px);
   opacity: 0;
@@ -113,15 +109,18 @@ body {
   opacity: 1;
 }
 
-/* Glass card */
 .glass-card {
-  background: rgba(31, 26, 48, 0.75);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-card {
+  background: rgba(31, 26, 48, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
