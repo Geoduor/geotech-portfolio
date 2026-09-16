@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useRef, useState } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { Environment, useGLTF, PerspectiveCamera } from '@react-three/drei';
 import { gsap } from 'gsap';
@@ -9,11 +9,33 @@ import * as THREE from 'three';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Simple Error Boundary to catch GLTF loading errors
+class ModelErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error("Model loading error caught:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return null; // Return nothing if the model fails to load
+    }
+    return this.props.children;
+  }
+}
+
 function PortfolioModel({ modelPath }: { modelPath: string }) {
   const { scene } = useGLTF(modelPath);
   const modelRef = useRef<THREE.Object3D>(null);
 
-  // Expose model ref for GSAP
   useGSAP(() => {
     if (modelRef.current) {
         gsap.to(modelRef.current.rotation, {
@@ -59,7 +81,9 @@ export default function PortfolioScene() {
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4FD1C5" />
         
         <Suspense fallback={null}>
-          <PortfolioModel modelPath="/assets/3d/asset_0_hat_neutral_gaze.glb" />
+          <ModelErrorBoundary>
+            <PortfolioModel modelPath="/assets/3d/asset_0_hat_neutral_gaze.glb" />
+          </ModelErrorBoundary>
           <Environment preset="city" />
         </Suspense>
 
