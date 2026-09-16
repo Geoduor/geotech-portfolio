@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import Navbar from "@/components/Navbar";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -16,12 +17,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "GEOTech | Geofry Oduor – AI & Full-Stack Engineer",
+  title: "Geodr. | Geofry Oduor – AI & Full-Stack Engineer",
   description:
     "I build AI automation, SaaS platforms and full-stack systems for businesses across Africa. Clean code. Fast delivery. Real impact.",
   keywords: [
     "Geofry Oduor",
-    "GEOTech",
+    "Geodr.",
     "AI Engineer",
     "Full-Stack Developer",
     "Kenya",
@@ -30,17 +31,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Geofry Oduor" }],
   openGraph: {
-    title: "GEOTech | Geofry Oduor",
+    title: "Geodr. | Geofry Oduor",
     description:
       "AI & Full-Stack Engineer building intelligent software solutions for Africa.",
-    url: "https://geotech-portfolio.vercel.app",
-    siteName: "GEOTech",
+    url: "https://geodr-portfolio.vercel.app",
+    siteName: "Geodr.",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "GEOTech | Geofry Oduor",
+    title: "Geodr. | Geofry Oduor",
     description:
       "AI & Full-Stack Engineer building intelligent software solutions for Africa.",
   },
@@ -61,7 +62,8 @@ export default function RootLayout({
       className={`${sora.variable} ${inter.variable} light`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-bg-0 text-text-primary antialiased font-sans">
+      <body className="min-h-screen bg-bg-0 text-text-primary antialiased font-sans pt-16">
+        <Navbar />
         <script
           dangerouslySetInnerHTML={{
             __html: `
