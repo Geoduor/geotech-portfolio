@@ -1,16 +1,17 @@
 "use client";
 import React, { Suspense, useRef } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import { Environment, useGLTF, PerspectiveCamera } from '@react-three/drei';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import * as THREE from 'three';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function PortfolioModel({ modelPath }: { modelPath: string }) {
   const { scene } = useGLTF(modelPath);
-  const modelRef = useRef<any>(null);
+  const modelRef = useRef<THREE.Object3D>(null);
 
   // Expose model ref for GSAP
   useGSAP(() => {
