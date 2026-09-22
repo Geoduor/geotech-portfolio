@@ -1,28 +1,60 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Single source of truth for colour, type and motion.
+   Semantic names only (bg-0..3 / text-primary..tertiary) so components never
+   hard-code a hex value.
+--------------------------------------------------------------------------- */
+
 :root {
-  /* Light mode (default) - Cream/Light Blue Theme */
-  --bg-0: #fdfbf7;      /* Cream background */
+  /* Surfaces, lightest to deepest */
+  --bg-0: #fbf9f4;
   --bg-1: #ffffff;
-  --bg-2: #f4f1ea;
-  --bg-3: #e8e4db;
-  --text-primary: #1a237e;  /* Deep Blue */
-  --text-secondary: #37474f;
-  --text-tertiary: #546e7a;
-  --border-color: rgba(0, 0, 0, 0.1);
-  --brand-blue: #0288d1;    /* Light Blue */
-  --brand-accent: #ffb74d;  /* Accent */
+  --bg-2: #f3efe6;
+  --bg-3: #e7e1d5;
+
+  /* Text — contrast checked against --bg-0 / --bg-1 */
+  --text-primary: #0b1b3a;
+  --text-secondary: #3b4a63;
+  --text-tertiary: #64748b;
+
+  --border-color: rgba(11, 27, 58, 0.12);
+
+  /* Brand */
+  --brand-blue: #0b6bcb;
+  --brand-blue-ink: #084f97; /* text-on-surface variant, AA at body size */
+  --brand-accent: #b45309;
+
+  /* Focus ring — never remove, only repaint */
+  --ring: #0b6bcb;
+
+  --shadow-card: 0 1px 2px rgba(11, 27, 58, 0.04),
+    0 8px 24px -12px rgba(11, 27, 58, 0.16);
+  --shadow-lift: 0 2px 4px rgba(11, 27, 58, 0.06),
+    0 20px 40px -16px rgba(11, 27, 58, 0.24);
 }
 
 .dark {
-  --bg-0: #0f172a;
-  --bg-1: #1e293b;
-  --bg-2: #334155;
-  --bg-3: #475569;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-0: #0a1122;
+  --bg-1: #121c33;
+  --bg-2: #1b2846;
+  --bg-3: #24345a;
+
+  --text-primary: #f3f6fc;
+  --text-secondary: #c2cee4;
+  --text-tertiary: #93a3bf;
+
+  --border-color: rgba(255, 255, 255, 0.12);
+
+  --brand-blue: #4da3ff;
+  --brand-blue-ink: #8ec5ff;
+  --brand-accent: #fbbf24;
+
+  --ring: #8ec5ff;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.5), 0 20px 40px -16px rgba(0, 0, 0, 0.8);
 }
 
 @theme inline {
@@ -35,24 +67,124 @@
   --color-text-tertiary: var(--text-tertiary);
   --color-border-custom: var(--border-color);
   --color-brand-blue: var(--brand-blue);
+  --color-brand-ink: var(--brand-blue-ink);
   --color-brand-accent: var(--brand-accent);
   --font-sans: var(--font-inter);
   --font-display: var(--font-sora);
 }
 
-* {
-  scroll-behavior: smooth;
-}
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
 
 html {
   scroll-behavior: smooth;
+  /* Sticky header height + breathing room, so anchors don't hide under the nav */
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--bg-0);
   color: var(--text-primary);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--brand-blue);
+  color: #fff;
+}
+
+/* Visible, consistent keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link: hidden until focused by keyboard. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--brand-blue);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion
+   Reveal-on-scroll is opt-in and fully disabled when the visitor asks for
+   reduced motion.
+--------------------------------------------------------------------------- */
+
+@keyframes cw-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: cw-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+
+/* Subtle grid texture used behind the hero. */
+.bg-grid {
+  background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    #000 30%,
+    transparent 75%
+  );
 }
