@@ -9,7 +9,7 @@
  */
 
 /** Placeholder until a real address is supplied. */
-export const CONTACT_EMAIL = "hello@example.com"; // TODO(you): real email
+export const CONTACT_EMAIL = "geofryoduor108@gmail.com";
 
 export const site = {
   name: "Geofry Oduor",
