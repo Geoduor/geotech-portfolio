@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { certificates } from "@/content/site";
+import { certificates, site } from "@/content/site";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Certificates & Achievements - Geofry Oduor",
