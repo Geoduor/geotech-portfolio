@@ -298,5 +298,30 @@ export const nav = [
   { href: "/services", label: "Services" },
   { href: "/projects", label: "Work" },
   { href: "/about", label: "About" },
+  { href: "/certificates", label: "Certificates" },
   { href: "/contact", label: "Contact" },
+];
+
+export const certificates = [
+  {
+    id: "come-build-with-ai",
+    title: "Come Build with AI",
+    issuer: "GOMYCODE",
+    date: "27 SEP 2026",
+    image: "/certificates/cert1.jpeg",
+  },
+  {
+    id: "ai-safari",
+    title: "AI Safari covering AGENTIC FRAMEWORKS, AI AUTOMATION, PROMPT ENGINEERING AND AI ETHICS & GOVERNANCE",
+    issuer: "POWER LEARN PROJECT",
+    date: "1 JUL 2026",
+    image: "/certificates/cert2.jpeg",
+  },
+  {
+    id: "intro-software-dev",
+    title: "Introduction to Software Development",
+    issuer: "ZONE01 KISUMU",
+    date: "2 APR 2024",
+    image: "/certificates/cert3.jpeg",
+  },
 ];
