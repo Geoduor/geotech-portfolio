@@ -1,9 +1,10 @@
 import { ArrowUpRight, Github } from "lucide-react";
 import type { Project } from "@/content/site";
+import ProjectVideo from "@/components/ProjectVideo";
 
 /**
- * Server component — deliberately free of client hooks so it can render inside
- * any page (Server or Client) without a "use client" boundary.
+ * Server component — free of client hooks itself so it can render inside any
+ * page. The optional video button is its own small client component.
  */
 export default function ProjectCard({ project }: { project: Project }) {
   return (
@@ -23,7 +24,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         {project.solution}
       </p>
 
-      <ul className="mt-5 flex flex-wrap gap-2">
+      <ul className="mb-5 mt-5 flex flex-wrap gap-2">
         {project.tech.map((item) => (
           <li
             key={item}
@@ -45,6 +46,9 @@ export default function ProjectCard({ project }: { project: Project }) {
             View live
             <ArrowUpRight size={15} aria-hidden />
           </a>
+        )}
+        {project.video && (
+          <ProjectVideo video={project.video} title={project.title} />
         )}
         {project.githubUrl && (
           <a

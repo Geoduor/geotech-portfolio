@@ -106,6 +106,15 @@ export const services: Service[] = [
   },
 ];
 
+export type ProjectVideo = {
+  /** Path under /public. */
+  src: string;
+  /** Poster image shown before playback. */
+  poster: string;
+  /** Button text, e.g. "Watch ad". */
+  label: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -116,6 +125,8 @@ export type Project = {
   tech: string[];
   githubUrl: string | null;
   liveUrl: string | null;
+  /** Optional promo video, opened from a button on the card. */
+  video?: ProjectVideo;
   /** Set true to show on the home page. */
   featured: boolean;
 };
@@ -158,6 +169,11 @@ export const projects: Project[] = [
     tech: ["React", "FastAPI", "SQLite", "PWA"],
     githubUrl: "https://github.com/Geoduor/khu-live-app",
     liveUrl: "https://khu-live-app.vercel.app",
+    video: {
+      src: "/videos/khu-live-ad.mp4",
+      poster: "/videos/khu-live-ad-poster.jpg",
+      label: "Watch ad",
+    },
     featured: true,
   },
   {
