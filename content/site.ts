@@ -133,6 +133,37 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "khu-live",
+    title: "Kenya Hockey Union Live",
+    category: "Sports Platform",
+    problem:
+      "Kenyan hockey fans had no reliable place to follow live scores, standings and fixtures.",
+    solution:
+      "An unofficial, fan-built installable PWA with live standings across 8 KHU leagues, match-state tracking, favourite teams with scoped push notifications and offline caching, fed by a rate-limited scraper with a circuit breaker.",
+    tech: ["React", "FastAPI", "SQLite", "PWA"],
+    githubUrl: "https://github.com/Geoduor/khu-live-app",
+    liveUrl: "https://khu-live-app.vercel.app",
+    video: {
+      src: "/videos/khu-live-ad.mp4",
+      poster: "/videos/khu-live-ad-poster.jpg",
+      label: "Watch ad",
+    },
+    featured: true,
+  },
+  {
+    id: "off-pitch",
+    title: "Off-Pitch Africa",
+    category: "Sports Media",
+    problem:
+      "African athlete stories get far less coverage than the games themselves.",
+    solution:
+      "A multi-page site for Off Pitch Africa with a Claude-powered chat assistant, live YouTube, Instagram and Facebook feeds, and a password-protected admin dashboard for updating events, gallery, blog and videos without code.",
+    tech: ["JavaScript", "Vercel", "Claude API", "GitHub API"],
+    githubUrl: "https://github.com/Geoduor/OFF-PITCH",
+    liveUrl: "https://offpitchafrica.com",
+    featured: true,
+  },
+  {
     id: "agripulse",
     title: "AgriPulse AI",
     category: "AI Agronomy Platform",
@@ -156,25 +187,7 @@ export const projects: Project[] = [
     tech: ["Next.js", "FastAPI", "Python", "Rules engine"],
     githubUrl: "https://github.com/Geoduor/MediTriage-AI",
     liveUrl: "https://meditriageai-sand.vercel.app",
-    featured: true,
-  },
-  {
-    id: "khu-live",
-    title: "Kenya Hockey Union Live",
-    category: "Sports Platform",
-    problem:
-      "Kenyan hockey fans had no reliable place to follow live scores, standings and fixtures.",
-    solution:
-      "An unofficial, fan-built installable PWA with live standings across 8 KHU leagues, match-state tracking, favourite teams with scoped push notifications and offline caching, fed by a rate-limited scraper with a circuit breaker.",
-    tech: ["React", "FastAPI", "SQLite", "PWA"],
-    githubUrl: "https://github.com/Geoduor/khu-live-app",
-    liveUrl: "https://khu-live-app.vercel.app",
-    video: {
-      src: "/videos/khu-live-ad.mp4",
-      poster: "/videos/khu-live-ad-poster.jpg",
-      label: "Watch ad",
-    },
-    featured: true,
+    featured: false,
   },
   {
     id: "placement-agent",
@@ -200,19 +213,6 @@ export const projects: Project[] = [
     tech: ["FastAPI", "PostgreSQL", "React", "TypeScript"],
     githubUrl: "https://github.com/Geoduor/KYHC",
     liveUrl: "https://kyhc.vercel.app",
-    featured: false,
-  },
-  {
-    id: "off-pitch",
-    title: "Off-Pitch Africa",
-    category: "Sports Media",
-    problem:
-      "African athlete stories get far less coverage than the games themselves.",
-    solution:
-      "A multi-page site for Off Pitch Africa with a Claude-powered chat assistant, live YouTube, Instagram and Facebook feeds, and a password-protected admin dashboard for updating events, gallery, blog and videos without code.",
-    tech: ["JavaScript", "Vercel", "Claude API", "GitHub API"],
-    githubUrl: "https://github.com/Geoduor/OFF-PITCH",
-    liveUrl: "https://off-pitch-nine.vercel.app/",
     featured: false,
   },
   {
