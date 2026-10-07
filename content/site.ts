@@ -34,9 +34,9 @@ export const site = {
  * keep it that way. Do not add a metric you cannot defend.
  */
 export const stats = [
-  { value: "6", label: "Projects shipped" },
-  { value: "2", label: "Live platforms" },
-  { value: "3", label: "Industries served" },
+  { value: "7", label: "Projects shipped" },
+  { value: "6", label: "Live platforms" },
+  { value: "5", label: "Industries served" },
   { value: "2", label: "Active programmes" },
 ];
 
@@ -124,27 +124,27 @@ export const projects: Project[] = [
   {
     id: "agripulse",
     title: "AgriPulse AI",
-    category: "AI Multi-Agent System",
+    category: "AI Agronomy Platform",
     problem:
-      "Smallholder farmers make high-stakes planting and resource decisions with fragmented, hard-to-read information.",
+      "Kenyan smallholder farmers face delayed pest diagnosis and too few extension workers, and advice rarely arrives in their own language.",
     solution:
-      "A multi-agent system that coordinates specialised agents to interpret farm conditions and surface actionable guidance.",
-    tech: ["Python", "LangChain", "OpenAI", "FastAPI"],
-    githubUrl: "https://github.com/Geoduor/AgriPulse-AI",
-    liveUrl: null,
+      "An agronomy assistant that understands English, Swahili and local dialects, identifies crop disease with Gemini, pulls county-level weather and recommends locally available agrochemicals with KES pricing.",
+    tech: ["Python", "FastAPI", "React", "Gemini", "Supabase"],
+    githubUrl: "https://github.com/Geoduor/agripulse-ai",
+    liveUrl: "https://agripulse-ai-eosin.vercel.app",
     featured: true,
   },
   {
-    id: "fraud-detection",
-    title: "Fraud Detection Agent",
-    category: "Enterprise AI",
+    id: "meditriage",
+    title: "MediTriage AI",
+    category: "Healthcare AI",
     problem:
-      "Fraud patterns vary across domains, so single-model detectors miss cases and drown analysts in false positives.",
+      "Understaffed primary-care clinics in Kenya see 50–80+ patients a day, and deciding who needs a hospital, urgent care or routine treatment is slow.",
     solution:
-      "A multi-domain anti-fraud system combining machine learning with LLM reasoning to flag suspicious financial activity in real time.",
-    tech: ["Python", "TensorFlow", "Claude API", "Node.js"],
-    githubUrl: "https://github.com/Geoduor/fraud-detection-agent",
-    liveUrl: null,
+      "A bilingual (English/Swahili) triage tool that classifies patients as red, yellow or green with a deterministic rule engine, explains costs under SHA and prints referral slips. An LLM only structures and phrases; it never decides. A prototype from the GOMYCODE Come Build with AI hackathon, with clinical content awaiting clinician review.",
+    tech: ["Next.js", "FastAPI", "Python", "Rules engine"],
+    githubUrl: "https://github.com/Geoduor/MediTriage-AI",
+    liveUrl: "https://meditriageai-sand.vercel.app",
     featured: true,
   },
   {
@@ -152,51 +152,64 @@ export const projects: Project[] = [
     title: "Kenya Hockey Union Live",
     category: "Sports Platform",
     problem:
-      "Kenyan hockey fans had no reliable place to follow live scores, standings and player statistics.",
+      "Kenyan hockey fans had no reliable place to follow live scores, standings and fixtures.",
     solution:
-      "A live platform serving realtime scores and season data for the 2025/26 season, built as an installable PWA.",
-    tech: ["React", "FastAPI", "PostgreSQL", "PWA"],
+      "An unofficial, fan-built installable PWA with live standings across 8 KHU leagues, match-state tracking, favourite teams with scoped push notifications and offline caching, fed by a rate-limited scraper with a circuit breaker.",
+    tech: ["React", "FastAPI", "SQLite", "PWA"],
     githubUrl: "https://github.com/Geoduor/khu-live-app",
-    liveUrl: "https://khu-live-app.vercel.app/",
+    liveUrl: "https://khu-live-app.vercel.app",
     featured: true,
   },
   {
     id: "placement-agent",
-    title: "Attachment Placement Agent",
+    title: "AttachKenya",
     category: "Education Tech",
     problem:
-      "University students struggle to find and secure industrial attachment placements, and the process is largely manual.",
+      "University students struggle to find industrial attachment placements that fit their course, and the process is largely manual.",
     solution:
-      "An AI-driven system that matches students to placement opportunities and helps them work through the application.",
-    tech: ["TypeScript", "Next.js", "Supabase", "LLMs"],
-    githubUrl: "https://github.com/Geoduor/placement-agent",
+      "A matching system where students build a profile once and get transparent 0–100 match scores per placement from a weighted rules engine (course, skills, industry, location, duration), plus Claude-drafted cover letters and an application tracker.",
+    tech: ["Next.js", "TypeScript", "Supabase", "Claude API"],
+    githubUrl: "https://github.com/Geoduor/ATTACH",
     liveUrl: null,
+    featured: false,
+  },
+  {
+    id: "kyhc",
+    title: "Kisumu Youngstars Hockey Club",
+    category: "Club Management",
+    problem:
+      "A hockey club needs one place to manage teams, players, coaches, matches, training and attendance, with the right people seeing the right data.",
+    solution:
+      "A role-based club management system: a FastAPI and PostgreSQL API with OAuth2 JWT authentication and seven permission levels, tested and shipped through GitHub Actions, with a React and TypeScript front end.",
+    tech: ["FastAPI", "PostgreSQL", "React", "TypeScript"],
+    githubUrl: "https://github.com/Geoduor/KYHC",
+    liveUrl: "https://kyhc.vercel.app",
     featured: false,
   },
   {
     id: "off-pitch",
     title: "Off-Pitch Africa",
-    category: "Sports Storytelling",
+    category: "Sports Media",
     problem:
       "African athlete stories get far less coverage than the games themselves.",
     solution:
-      "A media platform amplifying athlete narratives, with structured routing and AI-assisted content summaries.",
-    tech: ["Flutter", "GoRouter", "Claude API", "Firebase"],
+      "A multi-page site for Off Pitch Africa with a Claude-powered chat assistant, live YouTube, Instagram and Facebook feeds, and a password-protected admin dashboard for updating events, gallery, blog and videos without code.",
+    tech: ["JavaScript", "Vercel", "Claude API", "GitHub API"],
     githubUrl: "https://github.com/Geoduor/OFF-PITCH",
     liveUrl: "https://off-pitch-nine.vercel.app/",
     featured: false,
   },
   {
-    id: "library-system",
-    title: "Library Management System",
-    category: "Backend System",
+    id: "ikinai-media",
+    title: "Ikinai Media",
+    category: "Media Website & CMS",
     problem:
-      "Library operations need safe multi-user access to shared resources without exposing member data.",
+      "A media company needs a public site and a way for staff to publish news and manage their portfolio and enquiries without developer help.",
     solution:
-      "A PHP REST API handling catalogue, members and lending, with JWT authentication and role-based access control.",
-    tech: ["PHP", "MySQL", "JWT", "REST API"],
-    githubUrl: "https://github.com/Geoduor/library-system",
-    liveUrl: null,
+      "A Next.js website with an admin dashboard for posting and publishing news, managing portfolio items and reviewing contact submissions, backed by Prisma and PostgreSQL.",
+    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    githubUrl: "https://github.com/Geoduor/ikinai-media",
+    liveUrl: "https://ikinai-media.vercel.app/",
     featured: false,
   },
 ];
@@ -251,7 +264,7 @@ export const skillGroups = [
   },
   {
     label: "AI / ML",
-    items: ["Multi-agent systems", "LangChain", "Claude API", "OpenAI", "TensorFlow"],
+    items: ["Multi-agent systems", "LangChain", "Claude API", "Gemini", "Rules engines"],
   },
   {
     label: "Tooling",

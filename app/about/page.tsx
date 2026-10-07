@@ -8,7 +8,7 @@ import { education, experience, site, skillGroups } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Geofry Oduor is a mechanical engineer turned AI and full-stack software engineer based in Kenya, building systems for agriculture, fraud detection and sports data.",
+    "Geofry Oduor is a mechanical engineer turned AI and full-stack software engineer based in Kenya, building systems for agriculture, healthcare triage and sports data.",
   alternates: { canonical: "/about" },
 };
 
@@ -34,9 +34,9 @@ export default function AboutPage() {
             <p>
               I learned to build by shipping. I am currently training in AI and software
               development with Power Learn Project Africa and in software engineering at
-              Zone01 Kisumu, and in parallel I have built multi-agent systems for Kenyan
-              smallholder farmers, an anti-fraud detection agent, and a live sports
-              platform for the Kenya Hockey Union.
+              Zone01 Kisumu, and in parallel I have built an AI agronomy assistant for
+              Kenyan smallholder farmers, a bilingual clinic triage tool, and live sports
+              platforms for the Kenya Hockey Union and Kisumu Youngstars Hockey Club.
             </p>
             <p>
               Before software, I coordinated logistics at Gantad Logistics and installed

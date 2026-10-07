@@ -8,7 +8,7 @@ import { projects } from "@/content/site";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "AI systems, full-stack platforms and backend services built by Geofry Oduor — agritech, fraud detection, sports data and education technology.",
+    "AI systems, full-stack platforms and backend services built by Geofry Oduor — agritech, healthcare triage, sports data, media and education technology.",
   alternates: { canonical: "/projects" },
 };
 
@@ -31,7 +31,7 @@ export default function ProjectsPage() {
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-text-secondary">
           A selection of systems I have designed and built across AI automation,
-          enterprise tooling, sports data and education. Each one started as a real
+          healthcare, sports data, media and education. Each one started as a real
           problem, not a tutorial.
         </p>
       </Reveal>
