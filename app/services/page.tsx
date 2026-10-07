@@ -8,7 +8,7 @@ import { processSteps, services, site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "AI automation, multi-agent systems, full-stack web platforms and backend APIs — scoped with a fixed quote before any work starts.",
+    "AI automation, multi-agent systems, full-stack web platforms and backend APIs, scoped in writing before any work starts.",
   alternates: { canonical: "/services" },
 };
 
@@ -30,8 +30,8 @@ export default function ServicesPage() {
           Software that earns its keep.
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-text-secondary">
-          I work on a small number of engagements at a time so each one gets real
-          attention. Here is what I take on.
+          I take on a small number of projects at a time so each one gets proper
+          attention. Here is what I work on.
         </p>
       </Reveal>
 
@@ -42,7 +42,7 @@ export default function ServicesPage() {
             <Reveal key={service.id} delayMs={index * 50}>
               <article
                 id={service.id}
-                className="scroll-mt-24 rounded-2xl border border-border-custom bg-bg-1 p-8 shadow-[var(--shadow-card)] lg:p-10"
+                className="scroll-mt-24 rounded-2xl border border-border-custom bg-bg-1 p-6 shadow-[var(--shadow-card)] sm:p-8 lg:p-10"
               >
                 <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-14">
                   <div>
@@ -94,7 +94,7 @@ export default function ServicesPage() {
             How an engagement runs
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-text-secondary">
-            Fixed scope, fixed price, weekly working software.
+            Clear scope, a price up front, and working software you can see along the way.
           </p>
         </Reveal>
 
@@ -104,7 +104,7 @@ export default function ServicesPage() {
               as="li"
               key={step.step}
               delayMs={index * 50}
-              className="flex gap-6 rounded-2xl border border-border-custom bg-bg-1 p-6"
+              className="flex gap-4 rounded-2xl border border-border-custom bg-bg-1 p-5 sm:gap-6 sm:p-6"
             >
               <span
                 aria-hidden
@@ -125,14 +125,14 @@ export default function ServicesPage() {
 
       {/* Fit */}
       <section className="mt-20 grid gap-6 md:grid-cols-2">
-        <div className="rounded-2xl border border-border-custom bg-bg-1 p-8">
+        <div className="rounded-2xl border border-border-custom bg-bg-1 p-6 sm:p-8">
           <h2 className="font-display text-xl font-bold">A good fit if you…</h2>
           <ul className="mt-5 space-y-3 text-sm text-text-secondary">
             {[
               "Have a specific problem worth automating or productising",
               "Want a working prototype to test with real users",
               "Need an AI feature integrated into an existing product",
-              "Value clear scope over an open-ended retainer",
+              "Value clear scope over an open-ended arrangement",
             ].map((item) => (
               <li key={item} className="flex gap-3">
                 <Check size={17} aria-hidden className="mt-0.5 shrink-0 text-brand-blue" />
@@ -142,7 +142,7 @@ export default function ServicesPage() {
           </ul>
         </div>
 
-        <div className="rounded-2xl border border-border-custom bg-bg-2 p-8">
+        <div className="rounded-2xl border border-border-custom bg-bg-2 p-6 sm:p-8">
           <h2 className="font-display text-xl font-bold">Probably not a fit if you…</h2>
           <ul className="mt-5 space-y-3 text-sm text-text-secondary">
             {[
@@ -160,7 +160,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="mt-20 rounded-2xl border border-border-custom bg-bg-1 p-8 text-center sm:p-12">
+      <section className="mt-20 rounded-2xl border border-border-custom bg-bg-1 p-6 text-center sm:p-12">
         <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
           Let&rsquo;s scope it out
         </h2>

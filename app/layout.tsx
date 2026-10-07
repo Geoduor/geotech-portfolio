@@ -31,10 +31,10 @@ export const metadata: Metadata = {
   keywords: [
     "Geofry Oduor",
     "Geodr",
-    "AI engineer Kenya",
-    "full-stack developer Nairobi",
+    "AI developer Kenya",
+    "full-stack developer Kenya",
     "multi-agent systems",
-    "Next.js developer Africa",
+    "Next.js developer Kenya",
     "AI automation consultant",
   ],
   authors: [{ name: site.name, url: site.github }],

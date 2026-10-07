@@ -35,13 +35,13 @@ export default function ProjectCard({ project }: { project: Project }) {
         ))}
       </ul>
 
-      <div className="mt-auto flex items-center gap-5 border-t border-border-custom pt-4 text-sm">
+      <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border-custom pt-4 text-sm">
         {project.liveUrl && (
           <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-medium text-brand-ink hover:underline"
+            className="inline-flex items-center gap-1.5 whitespace-nowrap font-medium text-brand-ink hover:underline"
           >
             View live
             <ArrowUpRight size={15} aria-hidden />
@@ -55,7 +55,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-text-secondary hover:text-brand-ink"
+            className="inline-flex items-center gap-1.5 whitespace-nowrap text-text-secondary hover:text-brand-ink"
           >
             <Github size={15} aria-hidden />
             Source

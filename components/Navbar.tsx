@@ -103,7 +103,7 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-border-custom bg-bg-0 px-6 py-4 md:hidden"
+          className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border-custom bg-bg-0 px-6 py-4 md:hidden"
         >
           <ul className="space-y-1">
             {nav.map((item) => (

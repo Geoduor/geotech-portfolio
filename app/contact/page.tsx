@@ -15,7 +15,7 @@ const nextSteps = [
   "You send a short description of the problem",
   "I reply with questions or a straight no if it is not a fit",
   "We take a short call to agree scope and success criteria",
-  "You get a written scope and a fixed price before any work starts",
+  "You get a written scope and a price before any work starts",
 ];
 
 export default function ContactPage() {
@@ -38,7 +38,7 @@ export default function ContactPage() {
 
       <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
         <Reveal>
-          <div className="rounded-2xl border border-border-custom bg-bg-1 p-8 shadow-[var(--shadow-card)]">
+          <div className="rounded-2xl border border-border-custom bg-bg-1 p-6 shadow-[var(--shadow-card)] sm:p-8">
             <h2 className="font-display text-xl font-bold">Email me</h2>
             <p className="mt-2 text-sm text-text-secondary">
               Tell me what you are building, who it is for, and any deadline you are working
@@ -48,9 +48,9 @@ export default function ContactPage() {
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href={`mailto:${CONTACT_EMAIL}?subject=Project%20enquiry`}
-                className="inline-flex items-center gap-2 rounded-xl bg-brand-blue px-6 py-3.5 text-sm font-semibold text-white transition hover:opacity-90"
+                className="inline-flex max-w-full items-center gap-2 break-all rounded-xl bg-brand-blue px-4 py-3.5 text-[13px] font-semibold text-white transition hover:opacity-90 min-[380px]:text-sm sm:px-6"
               >
-                <Mail size={16} aria-hidden />
+                <Mail size={16} aria-hidden className="hidden shrink-0 min-[380px]:block" />
                 {CONTACT_EMAIL}
               </a>
               <CopyEmail email={CONTACT_EMAIL} />
@@ -97,7 +97,7 @@ export default function ContactPage() {
         </Reveal>
 
         <Reveal delayMs={80}>
-          <div className="rounded-2xl border border-border-custom bg-bg-2 p-8">
+          <div className="rounded-2xl border border-border-custom bg-bg-2 p-6 sm:p-8">
             <h2 className="font-display text-xl font-bold">What happens next</h2>
             <ol className="mt-6 space-y-5">
               {nextSteps.map((step, index) => (
@@ -116,7 +116,7 @@ export default function ContactPage() {
             </ol>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-border-custom bg-bg-1 p-8">
+          <div className="mt-6 rounded-2xl border border-border-custom bg-bg-1 p-6 sm:p-8">
             <h2 className="font-display text-lg font-bold">Helpful to include</h2>
             <ul className="mt-4 space-y-2 text-sm text-text-secondary">
               {[

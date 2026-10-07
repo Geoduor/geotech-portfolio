@@ -42,7 +42,7 @@ export default function ProjectVideo({
       <button
         type="button"
         onClick={open}
-        className="inline-flex items-center gap-1.5 font-medium text-brand-ink hover:underline"
+        className="inline-flex items-center gap-1.5 whitespace-nowrap font-medium text-brand-ink hover:underline"
       >
         <Play size={15} aria-hidden />
         {video.label}

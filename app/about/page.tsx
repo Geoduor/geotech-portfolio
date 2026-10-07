@@ -34,19 +34,20 @@ export default function AboutPage() {
             <p>
               I learned to build by shipping. I am currently training in AI and software
               development with Power Learn Project Africa and in software engineering at
-              Zone01 Kisumu, and in parallel I have built an AI agronomy assistant for
-              Kenyan smallholder farmers, a bilingual clinic triage tool, and live sports
-              platforms for the Kenya Hockey Union and Kisumu Youngstars Hockey Club.
+              Zone01 Kisumu, and alongside that I have built an AI agronomy assistant for
+              Kenyan smallholder farmers, a bilingual clinic triage tool with a hackathon
+              team, and web apps for hockey: live scores for the Kenya Hockey Union and a
+              management system for Kisumu Young Stars Hockey Club, where I also play.
             </p>
             <p>
-              Before software, I coordinated logistics at Gantad Logistics and installed
-              customer Wi-Fi links on the Safaricom agent network. Both jobs were about
-              making systems work for people who just need the thing to work — which is
-              still the standard I hold my software to.
+              Before software, I installed Wi-Fi and gave technical support on the
+              Safaricom agent network, then coordinated logistics at Gantad Logistics.
+              Both jobs were about making systems work for people who just need the thing
+              to work, which is still the standard I hold my software to.
             </p>
             <p>
-              I am based in Kenya and work with clients remotely. If you have a problem
-              that software can genuinely solve, I would like to hear about it.
+              I am based in Kenya, between Kisumu and Nairobi. If you have a problem that
+              software can genuinely solve, I would like to hear about it.
             </p>
           </div>
 
@@ -97,7 +98,7 @@ export default function AboutPage() {
           {experience.map((item) => (
             <li
               key={`${item.title}-${item.org}`}
-              className="grid gap-2 rounded-2xl border border-border-custom bg-bg-1 p-6 sm:grid-cols-[150px_1fr] sm:gap-8"
+              className="grid gap-2 rounded-2xl border border-border-custom bg-bg-1 p-5 sm:grid-cols-[150px_1fr] sm:gap-8 sm:p-6"
             >
               <span className="text-sm font-medium text-text-tertiary">{item.period}</span>
               <div>
@@ -141,7 +142,7 @@ export default function AboutPage() {
         <h2 id="skills-heading" className="font-display text-2xl font-bold tracking-tight">
           Technical skills
         </h2>
-        <dl className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
           {skillGroups.map((group) => (
             <div key={group.label}>
               <dt className="text-xs font-bold uppercase tracking-wider text-text-tertiary">

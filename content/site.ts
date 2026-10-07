@@ -14,16 +14,16 @@ export const CONTACT_EMAIL = "geofryoduor108@gmail.com";
 export const site = {
   name: "Geofry Oduor",
   brand: "Geodr.",
-  role: "AI & Full-Stack Engineer",
+  role: "AI & Software Developer",
   location: "Kenya — Kisumu / Nairobi",
   /** Used for metadataBase, sitemap and OG tags. */
   url: "https://geotech-portfolio.vercel.app", // TODO(you): confirm the live domain
   tagline: "I build AI systems and web platforms that solve real problems.",
   intro:
-    "Mechanical engineer turned software engineer. I design and ship AI automation, multi-agent systems and full-stack web platforms for teams across Africa.",
+    "Final-year mechanical engineering student and AI & software developer in Kenya. I build AI-powered tools and full-stack web platforms for agriculture, healthcare, sports and education.",
   availability: "Available for new projects", // set to null to hide the badge
   github: "https://github.com/Geoduor",
-  linkedin: null as string | null, // TODO(you): LinkedIn URL, or leave null to hide
+  linkedin: "https://www.linkedin.com/in/geofry-oduor-b021b5272" as string | null, // from CV; set to null to hide
   cv: "/Geofry_Oduor_CV.pdf",
   photo: "/geofry-portrait.jpg",
   labPhoto: "/geofry-lab.jpg",
@@ -34,9 +34,9 @@ export const site = {
  * keep it that way. Do not add a metric you cannot defend.
  */
 export const stats = [
-  { value: "7", label: "Projects shipped" },
-  { value: "6", label: "Live platforms" },
-  { value: "5", label: "Industries served" },
+  { value: "7", label: "Projects built" },
+  { value: "6", label: "Live deployments" },
+  { value: "5", label: "Sectors covered" },
   { value: "2", label: "Active programmes" },
 ];
 
@@ -57,12 +57,12 @@ export const services: Service[] = [
     icon: "bot",
     title: "AI Automation & Multi-Agent Systems",
     summary:
-      "I turn manual, repetitive workflows into AI agents that run on their own — research, triage, routing and reporting.",
+      "I turn manual, repetitive workflows into AI agents, from crop diagnosis and clinic triage to application matching.",
     deliverables: [
-      "Multi-agent workflows (LangChain / Claude / OpenAI)",
-      "Document, ticket and data triage pipelines",
-      "LLM features wired into your existing product",
-      "Evaluation harness so quality is measured, not assumed",
+      "Multi-agent workflows with Claude and Gemini",
+      "Triage, scoring and matching pipelines",
+      "Rules engines that keep decisions explainable, with LLMs handling the language",
+      "Workflow automation with n8n and Google Apps Script",
     ],
   },
   {
@@ -70,12 +70,12 @@ export const services: Service[] = [
     icon: "layout",
     title: "Full-Stack Web Platforms",
     summary:
-      "Fast, accessible, search-optimised web apps built on Next.js and React — from landing page to logged-in product.",
+      "Responsive web apps built on Next.js and React, from public sites to logged-in products with admin dashboards.",
     deliverables: [
       "Next.js / React applications",
-      "Design systems and component libraries",
-      "Dashboards, portals and customer-facing apps",
-      "Core Web Vitals and accessibility passes",
+      "Admin dashboards for managing news, galleries and submissions",
+      "Mobile-first, responsive interfaces",
+      "SEO basics: metadata, sitemaps and Open Graph tags",
     ],
   },
   {
@@ -86,9 +86,9 @@ export const services: Service[] = [
       "Reliable, secure APIs and data layers that the rest of your product can depend on.",
     deliverables: [
       "REST APIs (FastAPI, Node.js, PHP)",
-      "PostgreSQL / MySQL / Supabase data modelling",
-      "Authentication and authorisation (JWT, roles)",
-      "Third-party integrations and webhooks",
+      "PostgreSQL / SQLite / Supabase data modelling",
+      "Authentication and role-based access (OAuth2, JWT)",
+      "Webhook integrations with signature verification",
     ],
   },
   {
@@ -96,12 +96,12 @@ export const services: Service[] = [
     icon: "activity",
     title: "Realtime & Data Products",
     summary:
-      "Live scores, feeds, dashboards and reporting surfaces where the data has to be right and current.",
+      "Live scores, feeds and dashboards where the data has to be right and current.",
     deliverables: [
-      "Realtime dashboards and live-data feeds",
-      "PWA / mobile-first delivery",
+      "Live standings and fixtures feeds",
+      "Installable PWAs with offline caching",
+      "Scoped push notifications",
       "Cross-platform clients (React, Flutter)",
-      "Analytics and reporting views",
     ],
   },
 ];
@@ -183,7 +183,7 @@ export const projects: Project[] = [
     problem:
       "Understaffed primary-care clinics in Kenya see 50–80+ patients a day, and deciding who needs a hospital, urgent care or routine treatment is slow.",
     solution:
-      "A bilingual (English/Swahili) triage tool that classifies patients as red, yellow or green with a deterministic rule engine, explains costs under SHA and prints referral slips. An LLM only structures and phrases; it never decides. A prototype from the GOMYCODE Come Build with AI hackathon, with clinical content awaiting clinician review.",
+      "A bilingual (English/Swahili) triage tool that classifies patients as red, yellow or green with a deterministic rule engine, explains costs under SHA and prints referral slips. An LLM only structures and phrases; it never decides. A team prototype (Team 104) from the GOMYCODE Come Build with AI hackathon, with clinical content still awaiting clinician review.",
     tech: ["Next.js", "FastAPI", "Python", "Rules engine"],
     githubUrl: "https://github.com/Geoduor/MediTriage-AI",
     liveUrl: "https://meditriageai-sand.vercel.app",
@@ -204,7 +204,7 @@ export const projects: Project[] = [
   },
   {
     id: "kyhc",
-    title: "Kisumu Youngstars Hockey Club",
+    title: "Kisumu Young Stars Hockey Club",
     category: "Club Management",
     problem:
       "A hockey club needs one place to manage teams, players, coaches, matches, training and attendance, with the right people seeing the right data.",
@@ -234,22 +234,22 @@ export const processSteps = [
   {
     step: "01",
     title: "Discovery call",
-    body: "A short call to understand the problem, the constraints and what success looks like. No charge, no obligation.",
+    body: "A short call to understand the problem, the constraints and what success looks like.",
   },
   {
     step: "02",
-    title: "Scope & fixed quote",
-    body: "You get a written scope, a timeline and a fixed price before any work starts. No open-ended billing.",
+    title: "Scope & quote",
+    body: "You get a written scope, a timeline and a price before any work starts.",
   },
   {
     step: "03",
-    title: "Build with weekly demos",
-    body: "Working software every week on a staging link you can click. You see progress, not status reports.",
+    title: "Build with regular demos",
+    body: "Working software on a link you can click, shared as it progresses, so you see progress and not just status reports.",
   },
   {
     step: "04",
     title: "Launch & handover",
-    body: "Deployment, documentation and a walkthrough so your team can run it. Support window included.",
+    body: "Deployment, documentation and a walkthrough so your team can run it.",
   },
 ];
 
@@ -268,57 +268,68 @@ export const testimonials: {
 export const skillGroups = [
   {
     label: "Languages",
-    items: ["TypeScript", "Python", "JavaScript", "PHP", "Java", "SQL"],
+    items: ["Python", "TypeScript", "JavaScript", "Go", "PHP", "C/C++ (Arduino)"],
   },
   {
     label: "Frontend",
     items: ["React", "Next.js", "Tailwind CSS", "Flutter", "HTML/CSS"],
   },
   {
-    label: "Backend",
-    items: ["Node.js", "FastAPI", "REST APIs", "PostgreSQL", "MySQL", "Supabase"],
+    label: "Backend & data",
+    items: ["FastAPI", "Node.js", "REST APIs", "PostgreSQL", "SQLite", "Supabase"],
   },
   {
-    label: "AI / ML",
-    items: ["Multi-agent systems", "LangChain", "Claude API", "Gemini", "Rules engines"],
+    label: "AI & automation",
+    items: [
+      "Multi-agent systems",
+      "Claude API",
+      "Gemini",
+      "Prompt engineering",
+      "n8n",
+      "Rules engines",
+    ],
   },
   {
     label: "Tooling",
-    items: ["Git", "Docker", "Vercel", "Linux", "CI/CD"],
+    items: ["Git & GitHub", "Docker", "Vercel", "Linux", "GitHub Actions"],
+  },
+  {
+    label: "Engineering",
+    items: ["SolidWorks", "AutoCAD", "MATLAB", "Arduino & sensors"],
   },
 ];
 
 export const experience = [
   {
-    period: "2025 — Present",
-    title: "Software Engineering",
+    period: "In progress",
+    title: "Software Engineering Programme",
     org: "Zone01 Kisumu",
-    body: "Peer-to-peer, project-based software engineering programme covering Go, JavaScript and systems fundamentals.",
+    body: "Software engineering programme. Completed an intensive introduction to software development (Feb–Mar 2024) and the Go-based Algorithms & Data Structures track.",
   },
   {
-    period: "2025 — Present",
+    period: "In progress",
     title: "AI & Software Development",
     org: "Power Learn Project Africa",
-    body: "Applied AI and full-stack development training, including multi-agent systems and production deployment.",
+    body: "Training in AI and software development. Completed the 4-week AI Safari on agentic frameworks, AI automation, prompt engineering and AI ethics & governance.",
   },
   {
-    period: "2024 — 2025",
-    title: "Logistics Coordinator",
+    period: "2023",
+    title: "Logistics Coordinator / Assistant",
     org: "Gantad Logistics Company",
-    body: "Coordinated freight scheduling and delivery operations, tracking consignments and resolving delays.",
+    body: "Coordinated logistics operations, shipment scheduling and supply chain documentation, worked on delivery routes and turnaround times, and managed vendor communications and records.",
   },
   {
-    period: "2023 — 2024",
-    title: "Wi-Fi Installation Technician",
+    period: "2020 — 2022",
+    title: "Technical Support & Wi-Fi Installation Technician",
     org: "Safaricom agent network",
-    body: "Installed and commissioned customer Wi-Fi links, diagnosing connectivity faults on site.",
+    body: "Installed and configured Wi-Fi equipment and last-mile internet for residential and SME clients, troubleshot connectivity and hardware faults, and trained users on their equipment.",
   },
 ];
 
 export const education = [
   {
-    period: "Final year",
-    title: "B.Tech, Mechanical Engineering",
+    period: "2020 — Present",
+    title: "B.Tech, Mechanical Engineering (final year)",
     org: "Technical University of Kenya",
   },
 ];
@@ -331,26 +342,39 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ];
 
-export const certificates = [
+export const certificates: {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  description: string;
+  image: string;
+}[] = [
   {
     id: "come-build-with-ai",
-    title: "Come Build with AI",
+    title: "Come Build with AI hackathon",
     issuer: "GOMYCODE",
-    date: "27 SEP 2026",
+    date: "27 Sep 2026",
+    description:
+      "Certificate of participation as a listed member of Team 104, for the MediTriage AI project.",
     image: "/certificates/cert1.jpeg",
   },
   {
     id: "ai-safari",
-    title: "AI Safari covering AGENTIC FRAMEWORKS, AI AUTOMATION, PROMPT ENGINEERING AND AI ETHICS & GOVERNANCE",
-    issuer: "POWER LEARN PROJECT",
-    date: "1 JUL 2026",
+    title: "AI Safari",
+    issuer: "Power Learn Project",
+    date: "1 Jul 2026",
+    description:
+      "Certificate of achievement for a 4-week programme covering agentic frameworks, AI automation, prompt engineering, and AI ethics & governance.",
     image: "/certificates/cert2.jpeg",
   },
   {
     id: "intro-software-dev",
     title: "Introduction to Software Development",
-    issuer: "ZONE01 KISUMU",
-    date: "2 APR 2024",
+    issuer: "Zone01 Kisumu",
+    date: "2 Apr 2024",
+    description:
+      "One-month intensive on the 01 Edu platform (26 Feb – 23 Mar 2024), with foundational Go proficiency.",
     image: "/certificates/cert3.jpeg",
   },
 ];

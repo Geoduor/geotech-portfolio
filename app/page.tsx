@@ -30,7 +30,7 @@ export default function Home() {
       <section className="relative overflow-hidden border-b border-border-custom">
         <div aria-hidden className="bg-grid pointer-events-none absolute inset-0 opacity-70" />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
           <div>
             {site.availability && (
               <p className="inline-flex items-center gap-2 rounded-full border border-border-custom bg-bg-1 px-3 py-1.5 text-xs font-medium text-text-secondary">
@@ -119,8 +119,8 @@ export default function Home() {
             Services built around outcomes, not billable hours.
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-text-secondary">
-            Every engagement starts with a written scope and a fixed price, so you always
-            know what you are getting before work begins.
+            Every engagement starts with a written scope, so you know what you are
+            getting before work begins.
           </p>
         </Reveal>
 
@@ -129,7 +129,7 @@ export default function Home() {
             const Icon = serviceIcons[service.icon] ?? Bot;
             return (
               <Reveal key={service.id} delayMs={index * 60}>
-                <article className="flex h-full flex-col rounded-2xl border border-border-custom bg-bg-1 p-7 shadow-[var(--shadow-card)] transition duration-200 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-[var(--shadow-lift)]">
+                <article className="flex h-full flex-col rounded-2xl border border-border-custom bg-bg-1 p-6 shadow-[var(--shadow-card)] transition duration-200 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-[var(--shadow-lift)]">
                   <span
                     aria-hidden
                     className="grid h-11 w-11 place-items-center rounded-xl bg-brand-blue/10 text-brand-ink"
@@ -175,7 +175,7 @@ export default function Home() {
               Selected work
             </p>
             <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
-              Systems shipped, running, and solving the problem they were built for.
+              Systems built for real problems in agriculture, healthcare, sports and education.
             </h2>
           </Reveal>
 
@@ -239,7 +239,7 @@ export default function Home() {
           <h2 className="font-display text-2xl font-bold tracking-tight">
             Tools I build with
           </h2>
-          <dl className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
             {skillGroups.map((group) => (
               <div key={group.label}>
                 <dt className="text-xs font-bold uppercase tracking-wider text-text-tertiary">
@@ -284,14 +284,14 @@ export default function Home() {
       )}
 
       {/* ------------------------------------------------------------ Final CTA */}
-      <section className="border-t border-border-custom bg-bg-1">
+      <section className="border-t border-border-custom">
         <div className="mx-auto max-w-6xl px-6 py-20 text-center lg:py-24">
           <h2 className="mx-auto max-w-3xl font-display text-3xl font-bold tracking-tight sm:text-4xl">
             Have a problem worth solving?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-text-secondary">
             Tell me what you are trying to build. I will come back with an honest read on
-            scope, timeline and cost — free of charge.
+            scope, timeline and cost.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Link
@@ -305,7 +305,7 @@ export default function Home() {
               href={site.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-border-custom bg-bg-0 px-6 py-3.5 text-sm font-semibold text-text-primary transition hover:border-brand-blue/40 hover:text-brand-ink"
+              className="inline-flex items-center gap-2 rounded-xl border border-border-custom bg-bg-1 px-6 py-3.5 text-sm font-semibold text-text-primary transition hover:border-brand-blue/40 hover:text-brand-ink"
             >
               Browse my code
             </a>

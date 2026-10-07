@@ -27,12 +27,12 @@ export default function ProjectsPage() {
           Portfolio
         </p>
         <h1 className="mt-3 max-w-3xl font-display text-4xl font-bold tracking-tight sm:text-5xl">
-          Work that ships and keeps running.
+          Work built around real problems.
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-text-secondary">
           A selection of systems I have designed and built across AI automation,
-          healthcare, sports data, media and education. Each one started as a real
-          problem, not a tutorial.
+          healthcare, sports data, media and education. Each one is aimed at a real
+          problem.
         </p>
       </Reveal>
 
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
         </section>
       )}
 
-      <section className="mt-20 rounded-2xl border border-border-custom bg-bg-1 p-8 text-center sm:p-12">
+      <section className="mt-20 rounded-2xl border border-border-custom bg-bg-1 p-6 text-center sm:p-12">
         <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
           Need something like this built?
         </h2>
