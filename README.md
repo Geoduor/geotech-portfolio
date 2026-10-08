@@ -24,6 +24,7 @@ The site is responsive from 320 px phones up to desktop and supports light and d
 - [Tailwind CSS](https://tailwindcss.com) 4, with colour tokens defined in `app/globals.css`
 - [lucide-react](https://lucide.dev) icons and [sonner](https://sonner.emilkowal.ski) toasts
 - Vercel Analytics, deployed on [Vercel](https://vercel.com)
+- Fonts: Inter (Google Fonts) and a self-hosted faux-Cyrillic display font
 
 ## Project structure
 
@@ -36,6 +37,7 @@ app/
   certificates/       Certificates page
   contact/            Contact page
   layout.tsx          Shared layout, fonts, site-wide metadata
+  fonts/              Self-hosted display font (Geodr Faux) and its OFL licence
   globals.css         Design tokens (colours, spacing, dark mode) and base styles
   sitemap.ts          Generates /sitemap.xml
   robots.ts           Generates /robots.txt
@@ -47,6 +49,8 @@ components/
   CopyEmail.tsx       "Copy email" button
 content/
   site.ts             All of the site's text and data (see below)
+scripts/
+  build-faux-cyrillic-font.py   Rebuilds the display font from Montserrat
 public/
   Geofry_Oduor_CV.pdf, geofry-portrait.jpg
   certificates/       Certificate images
@@ -105,6 +109,13 @@ video: {
 
 The card then shows a button that opens the video in a dialog. The video file is not downloaded until someone presses play.
 
+### Fonts
+
+- **Headings, the "Geodr." brand and the big numbers** use **Geodr Faux**, a faux-Cyrillic display font: the letters R, N, W, U, Y and D (and r, n, w, u, y) are drawn as the Cyrillic letters Я, И, Ш, Ц, Ч and Д. The page text is still ordinary Latin, so search engines, screen readers and copy/paste are unaffected.
+- **Paragraphs, buttons and small labels** use Inter, so longer text stays easy to read.
+- Geodr Faux is generated from [Montserrat](https://github.com/JulietaUla/Montserrat) (SIL Open Font License 1.1, see `app/fonts/OFL.txt`) with `scripts/build-faux-cyrillic-font.py`. Edit the `SWAPS` list in that script and re-run it to change which letters are swapped.
+- To use a different display font, change the `faux` definition in `app/layout.tsx` (or point it at another font file in `app/fonts/`). To use the faux-Cyrillic look everywhere, set `--font-sans` to the same variable in `app/globals.css`.
+
 ### Replace the CV, photo or certificates
 
 Replace the file in `public/` using the same file name, or change the path in `content/site.ts`.
@@ -126,7 +137,7 @@ npm run start    # serve the production build
 npm run lint     # ESLint
 ```
 
-The build downloads the Sora and Inter fonts from Google Fonts, so it needs internet access.
+The build downloads the Inter font from Google Fonts, so it needs internet access. The display font is self-hosted (see Fonts below).
 
 ## Deploy
 

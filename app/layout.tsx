@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -7,11 +8,21 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { site } from "@/content/site";
 
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+/**
+ * Display font: "Geodr Faux", a faux-Cyrillic face (R reads as Я, N as И, W as Ш,
+ * U as Ц, Y as Ч, D as Д). It is built from Montserrat (SIL OFL) by
+ * scripts/build-faux-cyrillic-font.py. The page text stays ordinary Latin, only
+ * the letter shapes change. It is used for headings, the brand name and the
+ * numbers; paragraphs and buttons stay in Inter so they remain easy to read.
+ */
+const faux = localFont({
+  src: [
+    { path: "./fonts/GeodrFaux-Bold.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/GeodrFaux-ExtraBold.woff2", weight: "800", style: "normal" },
+  ],
+  variable: "--font-faux",
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 const inter = Inter({
@@ -83,7 +94,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable} light`}>
+    <html lang="en" className={`${faux.variable} ${inter.variable} light`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
