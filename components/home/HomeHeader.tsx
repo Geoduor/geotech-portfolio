@@ -33,7 +33,7 @@ export default function HomeHeader() {
             Geodr.
           </span>
           <span className="block text-[11px] font-medium opacity-80">
-            AI &amp; software developer · Kenya
+            Software engineer · Kenya
           </span>
         </a>
 

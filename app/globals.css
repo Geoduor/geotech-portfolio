@@ -9,25 +9,25 @@
 
 :root {
   /* Surfaces, lightest to deepest */
-  --bg-0: #fbf9f4;
+  --bg-0: #edf0fc;
   --bg-1: #ffffff;
-  --bg-2: #f3efe6;
-  --bg-3: #e7e1d5;
+  --bg-2: #e1e6fa;
+  --bg-3: #cdd6ff;
 
   /* Text — contrast checked against --bg-0 / --bg-1 */
-  --text-primary: #0b1b3a;
-  --text-secondary: #3b4a63;
-  --text-tertiary: #64748b;
+  --text-primary: #0a0f2c;
+  --text-secondary: #353d63;
+  --text-tertiary: #5b6491;
 
-  --border-color: rgba(11, 27, 58, 0.12);
+  --border-color: rgba(10, 15, 44, 0.14);
 
   /* Brand */
-  --brand-blue: #0b6bcb;
-  --brand-blue-ink: #084f97; /* text-on-surface variant, AA at body size */
+  --brand-blue: #1237e8;
+  --brand-blue-ink: #1237e8; /* text-on-surface variant, AA at body size */
   --brand-accent: #b45309;
 
   /* Focus ring — never remove, only repaint */
-  --ring: #0b6bcb;
+  --ring: #1237e8;
 
   --shadow-card: 0 1px 2px rgba(11, 27, 58, 0.04),
     0 8px 24px -12px rgba(11, 27, 58, 0.16);
@@ -36,10 +36,10 @@
 }
 
 .dark {
-  --bg-0: #0a1122;
-  --bg-1: #121c33;
-  --bg-2: #1b2846;
-  --bg-3: #24345a;
+  --bg-0: #070b1d;
+  --bg-1: #0f1530;
+  --bg-2: #171f45;
+  --bg-3: #222c5c;
 
   --text-primary: #f3f6fc;
   --text-secondary: #c2cee4;
@@ -47,11 +47,11 @@
 
   --border-color: rgba(255, 255, 255, 0.12);
 
-  --brand-blue: #4da3ff;
-  --brand-blue-ink: #8ec5ff;
+  --brand-blue: #5b7bff;
+  --brand-blue-ink: #9db0ff;
   --brand-accent: #fbbf24;
 
-  --ring: #8ec5ff;
+  --ring: #9db0ff;
 
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
   --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.5), 0 20px 40px -16px rgba(0, 0, 0, 0.8);
@@ -259,4 +259,25 @@ h4 {
   .fade-after-intro {
     opacity: 1;
   }
+}
+
+/* Inner pages share the home page's condensed display headings. */
+.site-shell main :is(h1, h2, h3) {
+  font-family: var(--font-anton-src), Impact, "Arial Narrow", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 0.95;
+}
+.site-shell main h1 {
+  font-size: clamp(3rem, 8.5vw, 6rem);
+}
+.site-shell main h2 {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+}
+.site-shell main :is(li, article, section.rounded-2xl) :is(h2, h3) {
+  font-size: 1.6rem;
+}
+.site-shell main :is(h2, h3).text-2xl {
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
 }

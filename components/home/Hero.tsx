@@ -54,8 +54,7 @@ export default function Hero() {
         <div className="max-w-md space-y-1.5 font-semibold leading-snug">
           <p className="text-sm sm:text-base">{site.tagline}</p>
           <p className="font-medium opacity-90">
-            Final-year mechanical engineering student, building AI tools and full-stack
-            platforms.
+            Software engineer in Kenya, building AI tools and full-stack platforms.
           </p>
           <p className="font-medium opacity-80">
             {site.availability}. Based in {site.location.replace("Kenya — ", "")}.

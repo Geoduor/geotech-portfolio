@@ -204,7 +204,7 @@ export default function Stage({ children }: { children: ReactNode }) {
               <p className="max-w-[12rem] pb-2 text-right text-xs uppercase tracking-[0.2em] text-white/60">
                 Geofry Oduor
                 <br />
-                AI &amp; software developer
+                Software engineer
               </p>
             </div>
           </div>

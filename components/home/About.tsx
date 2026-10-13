@@ -6,7 +6,7 @@ import { useScrollProgress } from "./useScrollProgress";
 
 /** Words marked with `*` are picked out in the accent colour. */
 const STATEMENT =
-  "I'm Geofry Oduor, a final-year mechanical engineering student in Kenya. I build *AI* tools and full-stack web platforms for agriculture, healthcare, sports and education. I've built *7* projects, 6 of them live. When I'm not coding, I'm on the *hockey* pitch.";
+  "I'm Geofry Oduor, a software engineer in Kenya. I build *AI* tools and full-stack web platforms for agriculture, healthcare, sports and education. I've built *7* projects, 6 of them live. When I'm not coding, I'm on the *hockey* pitch.";
 
 const words = STATEMENT.split(" ").map((w) => ({
   text: w.replace(/\*/g, ""),

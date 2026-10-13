@@ -1,6 +1,6 @@
 # Geofry Oduor — Portfolio
 
-Personal portfolio of Geofry Oduor, an AI & software developer and final-year mechanical engineering student based in Kenya (Kisumu / Nairobi).
+Personal portfolio of Geofry Oduor, a software engineer and AI developer based in Kenya (Kisumu / Nairobi).
 
 **Live site:** https://geotech-portfolio.vercel.app
 **GitHub:** https://github.com/Geoduor

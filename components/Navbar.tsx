@@ -41,7 +41,7 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight"
+          className="flex items-center gap-2.5 font-display text-lg font-extrabold tracking-tight"
         >
           <span
             aria-hidden
@@ -76,7 +76,7 @@ export default function Navbar() {
             <ThemeToggle />
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 rounded-lg bg-brand-blue px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#0a0f2c] px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90 dark:bg-amber-400 dark:text-[#0a0f2c]"
             >
               Start a project
               <ArrowRight size={15} aria-hidden />

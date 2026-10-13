@@ -14,13 +14,13 @@ export const CONTACT_EMAIL = "geofryoduor108@gmail.com";
 export const site = {
   name: "Geofry Oduor",
   brand: "Geodr.",
-  role: "AI & Software Developer",
+  role: "Software Engineer & AI Developer",
   location: "Kenya — Kisumu / Nairobi",
   /** Used for metadataBase, sitemap and OG tags. */
   url: "https://geotech-portfolio.vercel.app", // TODO(you): confirm the live domain
   tagline: "I build AI systems and web platforms that solve real problems.",
   intro:
-    "Final-year mechanical engineering student and AI & software developer in Kenya. I build AI-powered tools and full-stack web platforms for agriculture, healthcare, sports and education.",
+    "Software engineer and AI developer in Kenya. I build AI-powered tools and full-stack web platforms for agriculture, healthcare, sports and education.",
   availability: "Available for new projects", // set to null to hide the badge
   github: "https://github.com/Geoduor",
   linkedin: "https://www.linkedin.com/in/geofry-oduor-b021b5272" as string | null, // from CV; set to null to hide
@@ -295,10 +295,6 @@ export const skillGroups = [
     label: "Tooling",
     items: ["Git & GitHub", "Docker", "Vercel", "Linux", "GitHub Actions"],
   },
-  {
-    label: "Engineering",
-    items: ["SolidWorks", "AutoCAD", "MATLAB", "Arduino & sensors"],
-  },
 ];
 
 export const experience = [
@@ -331,7 +327,7 @@ export const experience = [
 export const education = [
   {
     period: "2020 — Present",
-    title: "B.Tech, Mechanical Engineering (final year)",
+    title: "Bachelor of Technology (final year)",
     org: "Technical University of Kenya",
   },
 ];

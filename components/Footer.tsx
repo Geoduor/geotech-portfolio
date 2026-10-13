@@ -6,7 +6,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border-custom bg-bg-1">
+    <footer className="bg-[#070b1d] text-white">
+      <p aria-hidden className="hd mx-auto max-w-6xl select-none px-6 pt-12 text-[clamp(3.5rem,15vw,11rem)] leading-[0.85] text-white">
+        Geofry Oduor
+      </p>
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <Link
@@ -21,20 +24,20 @@ export default function Footer() {
             </span>
             {site.brand}
           </Link>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-text-secondary">
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
             {site.intro}
           </p>
-          <p className="mt-4 flex items-center gap-2 text-sm text-text-tertiary">
+          <p className="mt-4 flex items-center gap-2 text-sm text-white/50">
             <MapPin size={15} aria-hidden />
             {site.location}
           </p>
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-text-primary">Navigate</h2>
+          <h2 className="text-sm font-semibold text-white">Navigate</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
-              <Link href="/" className="text-text-secondary hover:text-brand-ink">
+              <Link href="/" className="text-white/70 hover:text-amber-300">
                 Home
               </Link>
             </li>
@@ -42,7 +45,7 @@ export default function Footer() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-text-secondary hover:text-brand-ink"
+                  className="text-white/70 hover:text-amber-300"
                 >
                   {item.label}
                 </Link>
@@ -52,12 +55,12 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold text-text-primary">Get in touch</h2>
+          <h2 className="text-sm font-semibold text-white">Get in touch</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             <li>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-flex items-center gap-2 text-text-secondary hover:text-brand-ink"
+                className="inline-flex items-center gap-2 text-white/70 hover:text-amber-300"
               >
                 <Mail size={15} aria-hidden />
                 {CONTACT_EMAIL}
@@ -68,7 +71,7 @@ export default function Footer() {
                 href={site.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-text-secondary hover:text-brand-ink"
+                className="inline-flex items-center gap-2 text-white/70 hover:text-amber-300"
               >
                 <Github size={15} aria-hidden />
                 GitHub
@@ -77,7 +80,7 @@ export default function Footer() {
             <li>
               <a
                 href={site.cv}
-                className="inline-flex items-center gap-2 text-text-secondary hover:text-brand-ink"
+                className="inline-flex items-center gap-2 text-white/70 hover:text-amber-300"
               >
                 <Download size={15} aria-hidden />
                 Download CV
@@ -87,12 +90,12 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-border-custom">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-xs text-text-tertiary sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {site.name}. All rights reserved.
           </p>
-          <p>Built with Next.js and Tailwind CSS.</p>
+          <p>Software engineer · Kenya</p>
         </div>
       </div>
     </footer>
