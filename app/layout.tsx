@@ -4,8 +4,6 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { site } from "@/content/site";
 
 /**
@@ -23,6 +21,14 @@ const faux = localFont({
   variable: "--font-faux",
   display: "swap",
   fallback: ["system-ui", "sans-serif"],
+});
+
+/** Condensed display face for the home page's giant headings (Anton, SIL OFL). */
+const anton = localFont({
+  src: [{ path: "./fonts/Anton-Regular.woff2", weight: "400", style: "normal" }],
+  variable: "--font-anton-src",
+  display: "swap",
+  fallback: ["Impact", "Arial Narrow", "sans-serif"],
 });
 
 const inter = Inter({
@@ -94,19 +100,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${faux.variable} ${inter.variable} light`}>
+    <html lang="en" className={`${faux.variable} ${anton.variable} ${inter.variable} light`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="flex min-h-screen flex-col bg-bg-0 text-text-primary antialiased">
+      <body className="bg-bg-0 text-text-primary antialiased">
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <Navbar />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        {children}
         <Toaster position="top-center" richColors />
         <Analytics />
       </body>

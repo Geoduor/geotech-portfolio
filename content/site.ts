@@ -127,6 +127,8 @@ export type Project = {
   liveUrl: string | null;
   /** Optional promo video, opened from a button on the card. */
   video?: ProjectVideo;
+  /** Optional screenshot under /public, shown on the home page's 3D ring. */
+  image?: string;
   /** Set true to show on the home page. */
   featured: boolean;
 };

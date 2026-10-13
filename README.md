@@ -9,7 +9,7 @@ Personal portfolio of Geofry Oduor, an AI & software developer and final-year me
 
 | Page | Route | What it shows |
 | --- | --- | --- |
-| Home | `/` | Introduction, key numbers, services, featured projects, working process, tools |
+| Home | `/` | One scrolling page: loading intro, giant name over a 3D ring of project panels, what I do, live projects, pinned project carousel, about, experience, process, certificates and more work, contact |
 | Services | `/services` | What I build, how an engagement runs, and who it is a good fit for |
 | Work | `/projects` | All projects, with live links, source links and (where available) a promo video |
 | About | `/about` | Background, experience and training, education, technical skills |
@@ -30,19 +30,18 @@ The site is responsive from 320 px phones up to desktop and supports light and d
 
 ```
 app/
-  page.tsx            Home page
-  services/           Services page
-  projects/           Work page
-  about/              About page
-  certificates/       Certificates page
-  contact/            Contact page
-  layout.tsx          Shared layout, fonts, site-wide metadata
+  (home)/page.tsx     Home page (own full-screen layout, no navbar)
+  (site)/             Inner pages with the navbar and footer:
+    services/  projects/  about/  certificates/  contact/
+  layout.tsx          Root layout: fonts, site-wide metadata
   fonts/              Self-hosted display font (Geodr Faux) and its OFL licence
   globals.css         Design tokens (colours, spacing, dark mode) and base styles
   sitemap.ts          Generates /sitemap.xml
   robots.ts           Generates /robots.txt
 components/
-  Navbar.tsx, Footer.tsx, ThemeToggle.tsx
+  home/               The home page: Stage (background, 3D ring, loader), ring.ts (three.js),
+                      HomeHeader and one file per section
+  Navbar.tsx, Footer.tsx, ThemeToggle.tsx   (inner pages)
   ProjectCard.tsx     One project card
   ProjectVideo.tsx    "Watch" button that opens a project video in a dialog
   Reveal.tsx          Fade-in on scroll
@@ -115,6 +114,13 @@ The card then shows a button that opens the video in a dialog. The video file is
 - **Paragraphs, buttons and small labels** use Inter, so longer text stays easy to read.
 - Geodr Faux is generated from [Montserrat](https://github.com/JulietaUla/Montserrat) (SIL Open Font License 1.1, see `app/fonts/OFL.txt`) with `scripts/build-faux-cyrillic-font.py`. Edit the `SWAPS` list in that script and re-run it to change which letters are swapped.
 - To use a different display font, change the `faux` definition in `app/layout.tsx` (or point it at another font file in `app/fonts/`). To use the faux-Cyrillic look everywhere, set `--font-sans` to the same variable in `app/globals.css`.
+
+### Home page: 3D ring and colours
+
+- The ring on the home page has one curved panel per project, in the order of `projects`. Until a project has a screenshot, its panel is drawn from the project's own title, category and tech. To use a real screenshot, put it in `public/` and add `image: "/projects/my-project.jpg"` (about 1600×1000) to the project.
+- Each home section sets its page colour and the ring's behaviour with `data-*` attributes (`data-bg`, `data-ui`, `data-ring`, `data-cam`, `data-tilt`, `data-lift`, `data-focus`). They are documented at the top of `components/home/Stage.tsx`.
+- The ring is plain three.js, loaded after first paint. If WebGL is unavailable the coloured sections and all text still work. With "reduce motion" on, the ring stops spinning and the loading intro is skipped.
+- The giant headings use **Anton** (SIL OFL, `app/fonts/OFL-Anton.txt`). The brand mark and inner-page headings still use Geodr Faux.
 
 ### Replace the CV, photo or certificates
 
