@@ -8,7 +8,7 @@ import { education, experience, site, skillGroups } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Geofry Oduor is an AI and full-stack software engineer based in Kenya, building systems for agriculture, healthcare triage and sports data.",
+    "Geofry Oduor is a full-stack software engineer based in Kenya, building systems for agriculture, healthcare triage and sports data.",
   alternates: { canonical: "/about" },
 };
 
