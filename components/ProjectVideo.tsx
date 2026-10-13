@@ -15,9 +15,12 @@ import type { ProjectVideo as ProjectVideoData } from "@/content/site";
 export default function ProjectVideo({
   video,
   title,
+  className = "font-medium text-brand-ink hover:underline",
 }: {
   video: ProjectVideoData;
   title: string;
+  /** Classes for the trigger button, so it can match a dark or light card. */
+  className?: string;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -42,7 +45,7 @@ export default function ProjectVideo({
       <button
         type="button"
         onClick={open}
-        className="inline-flex items-center gap-1.5 whitespace-nowrap font-medium text-brand-ink hover:underline"
+        className={`inline-flex items-center gap-1.5 whitespace-nowrap ${className}`}
       >
         <Play size={15} aria-hidden />
         {video.label}
