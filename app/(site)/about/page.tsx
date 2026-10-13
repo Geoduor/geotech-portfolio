@@ -8,7 +8,7 @@ import { education, experience, site, skillGroups } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Geofry Oduor is a mechanical engineer turned AI and full-stack software engineer based in Kenya, building systems for agriculture, healthcare triage and sports data.",
+    "Geofry Oduor is a full-stack software engineer based in Kenya, building systems for agriculture, healthcare triage and sports data.",
   alternates: { canonical: "/about" },
 };
 
@@ -26,8 +26,7 @@ export default function AboutPage() {
 
           <div className="mt-7 space-y-5 text-lg leading-relaxed text-text-secondary">
             <p>
-              I am a final-year Mechanical Engineering student at the Technical University
-              of Kenya, and I build software. That is not a contradiction — engineering
+              I build software systems. That is not a contradiction — engineering
               taught me to define the problem before reaching for a tool, and that habit
               turned out to matter more in software than any framework.
             </p>
