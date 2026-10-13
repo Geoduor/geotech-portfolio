@@ -66,7 +66,7 @@ story.append(head_t)
 
 section("PROFESSIONAL SUMMARY")
 story.append(Paragraph(
-    "Software engineer and AI developer in Kenya, in the final year of a Bachelor of Technology at the Technical "
+    "Software engineer and AI developer in Kenya, in the final year of my degree at the Technical "
     "University of Kenya. I build AI-powered tools and full-stack web platforms for agriculture, healthcare, sports "
     "and education, and have shipped seven projects, six of them live, using React, Next.js, TypeScript, Python, "
     "FastAPI and PostgreSQL, with Claude and Gemini behind the AI features. Currently training in AI and Software "
@@ -74,7 +74,7 @@ story.append(Paragraph(
     "Competitive hockey player in the Kenya Hockey Union league.", summary))
 
 section("EDUCATION &amp; TRAINING")
-entry("Bachelor of Technology (final year)", "Technical University of Kenya (TUK), Nairobi", "2020 – Present")
+entry("Bachelor of Engineering in Mechanical Engineering (final year)", "Technical University of Kenya (TUK), Nairobi", "2020 – Present")
 entry("Software Engineering Programme", "Zone01 Kisumu · Go track: Algorithms &amp; Data Structures", "Current")
 entry("AI &amp; Software Development", "Power Learn Project Africa", "Current")
 entry("Kenya Certificate of Secondary Education (KCSE)", "Ramba High School", "2016")

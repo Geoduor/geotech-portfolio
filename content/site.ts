@@ -327,7 +327,7 @@ export const experience = [
 export const education = [
   {
     period: "2020 — Present",
-    title: "Bachelor of Technology (final year)",
+    title: "Bachelor of Engineering in Mechanical Engineering (final year)",
     org: "Technical University of Kenya",
   },
 ];

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, MapPin } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { education, experience, site, skillGroups } from "@/content/site";
+import { experience, site, skillGroups } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -107,30 +107,6 @@ export default function AboutPage() {
                 <p className="mt-2 text-sm leading-relaxed text-text-secondary">
                   {item.body}
                 </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* Education */}
-      <section aria-labelledby="education-heading" className="mt-14">
-        <h2
-          id="education-heading"
-          className="font-display text-2xl font-bold tracking-tight"
-        >
-          Education
-        </h2>
-        <ol className="mt-8 space-y-3">
-          {education.map((item) => (
-            <li
-              key={item.title}
-              className="grid gap-2 rounded-2xl border border-border-custom bg-bg-1 p-6 sm:grid-cols-[150px_1fr] sm:gap-8"
-            >
-              <span className="text-sm font-medium text-text-tertiary">{item.period}</span>
-              <div>
-                <h3 className="font-display text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm font-medium text-brand-ink">{item.org}</p>
               </div>
             </li>
           ))}
