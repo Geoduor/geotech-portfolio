@@ -9,19 +9,21 @@ import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-
-  // Close the mobile panel whenever the route changes.
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  // The menu is "open for" a path, so it closes by itself when the route changes.
+  const [openFor, setOpenFor] = useState<string | null>(null);
+  const open = openFor === pathname;
+  const setOpen = (value: boolean | ((current: boolean) => boolean)) =>
+    setOpenFor((previous) => {
+      const next = typeof value === "function" ? value(previous === pathname) : value;
+      return next ? pathname : null;
+    });
 
   // Close on Escape, and lock body scroll while the panel is open.
   useEffect(() => {
     if (!open) return;
 
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") setOpenFor(null);
     }
 
     document.addEventListener("keydown", onKeyDown);

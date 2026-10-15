@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 
 /**
@@ -8,14 +8,19 @@ import { Moon, Sun } from "lucide-react";
  * app/layout.tsx before first paint, so this only needs to read that state and
  * write it back on click.
  */
-export default function ThemeToggle() {
-  // Starts false on both server and client render, so hydration always matches;
-  // the effect below corrects it to the real theme immediately after mount.
-  const [isDark, setIsDark] = useState(false);
+function subscribe(onChange: () => void) {
+  // The <html> class is the source of truth; watch it so every toggle stays in sync.
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  return () => observer.disconnect();
+}
 
-  useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"));
-  }, []);
+const getSnapshot = () => document.documentElement.classList.contains("dark");
+/** Server render and hydration assume light; the real value is read right after. */
+const getServerSnapshot = () => false;
+
+export default function ThemeToggle() {
+  const isDark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   function toggle() {
     const root = document.documentElement;
@@ -27,7 +32,6 @@ export default function ThemeToggle() {
     } catch {
       /* storage unavailable (private mode) — theme still applies for this page */
     }
-    setIsDark(next);
   }
 
   return (

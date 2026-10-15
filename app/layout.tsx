@@ -100,8 +100,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${faux.variable} ${anton.variable} ${inter.variable} light`}>
+    <html lang="en" suppressHydrationWarning className={`${faux.variable} ${anton.variable} ${inter.variable} light`}>
       <head>
+        {/* themeScript is a fixed string defined above, with no user input. React would
+            HTML-escape it as a text child and break the code, so it is set as raw HTML. */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="bg-bg-0 text-text-primary antialiased">
