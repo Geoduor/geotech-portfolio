@@ -39,6 +39,7 @@ export default function CertificatesPage() {
                 src={cert.image}
                 alt={`${cert.title} certificate from ${cert.issuer}`}
                 fill
+                priority={index === 0}
                 sizes="(max-width: 768px) 92vw, (max-width: 1024px) 46vw, 380px"
                 className="object-contain"
               />

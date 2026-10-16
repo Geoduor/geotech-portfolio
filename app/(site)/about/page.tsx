@@ -75,6 +75,7 @@ export default function AboutPage() {
               src={site.photo}
               alt={`Portrait of ${site.name}`}
               fill
+              priority
               sizes="(max-width: 1024px) 90vw, 380px"
               className="object-cover"
             />
